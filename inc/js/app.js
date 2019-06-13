@@ -18,9 +18,9 @@ var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 var  OptionsMarkers = {
     'radius':6,
     'opacity': .5,
-    'color': "green",
+    'color': "blue",
     'fillColor':  "blue",
-    'fillOpacity': 0.8
+    'fillOpacity': 0.4
 };
 
 
