@@ -1,0 +1,787 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS - Aménagement et finition",
+        "description": "",
+        "organisme": "LYCEE BOIS D'OLIVE",
+        "ville": "RAVINE DES CABRIS ",
+        "telephone": "0262 49 89 71"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.460937,
+          -21.295912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS - Aménagement et finition",
+        "description": "",
+        "organisme": "URMA de Saint André",
+        "ville": "Saint-André",
+        "telephone": "0262 46 62 00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.65179999999998,
+          -20.968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Bâtiment",
+        "description": "",
+        "organisme": "LYCEE JEAN HINGLO",
+        "ville": "PORT",
+        "telephone": "0262 71 19 10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.29169999999999,
+          -20.949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Architectures en métal: conception et réalisation – AMCR",
+        "description": "",
+        "organisme": "LYCEE BEL AIR",
+        "ville": "Saint Suzanne",
+        "telephone": "0262 98 06 51"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.601034,
+          -20.905364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Développement et réalisation bois",
+        "description": "",
+        "organisme": "LYCEE JEAN JOLY",
+        "ville": "Saint Louis",
+        "telephone": "0262 39 75 20"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.435813,
+          -21.271501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Enveloppes du bâtiment : Conception et réalisation – EBCR",
+        "description": "",
+        "organisme": "LYCEE BEL AIR",
+        "ville": "Saint Suzanne",
+        "telephone": "0262 98 06 51"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.601034,
+          -20.905364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Études et économie de la construction",
+        "description": "",
+        "organisme": "LYCEE PAUL MOREAU",
+        "ville": "Bras Panon",
+        "telephone": "0262 51 53 30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.683174,
+          -21.002812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Études et économie de la construction",
+        "description": "",
+        "organisme": "LYCEE BOIS D'OLIVE",
+        "ville": "RAVINE DES CABRIS ",
+        "telephone": "0262 49 89 71"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.460937,
+          -21.295912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Études et réalisation d'agencement",
+        "description": "",
+        "organisme": "LYCEE PAUL MOREAU",
+        "ville": "Bras Panon",
+        "telephone": "0262 51 53 30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.683174,
+          -21.002812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Maintenance des systèmes de production",
+        "description": "",
+        "organisme": "LYCEE LISLET GEOFFROY",
+        "ville": "SAINTE-CLOTILDE ",
+        "telephone": "0262 90 72 11"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.468963,
+          -20.888282
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Maintenance des systèmes option :Systèmes énergétiques et fluidiques",
+        "description": "",
+        "organisme": "LYCEE L'HORIZON",
+        "ville": "SAINTE-CLOTILDE ",
+        "telephone": "0262 48 44 64"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.484984,
+          -20.905997
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Fluide Énergie Domotique : Option Génie Climatique et Fluidique",
+        "description": "",
+        "organisme": "LYCEE BOIS D'OLIVE",
+        "ville": "RAVINE DES CABRIS ",
+        "telephone": "0262 49 89 71"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.460937,
+          -21.295912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Fluide Énergie Domotique : Option  Froid et Conditionnement d'Air",
+        "description": "",
+        "organisme": "LYCEE BOIS D'OLIVE",
+        "ville": "RAVINE DES CABRIS ",
+        "telephone": "0262 49 89 71"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.460937,
+          -21.295912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Fluide Énergie Domotique : Option  Froid et Conditionnement d'Air",
+        "description": "",
+        "organisme": "URMA du Port",
+        "ville": "Port",
+        "telephone": " 0262 42 10 31"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.304275,
+          -20.934135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Fluide Énergie Domotique : Option  Domotique et Bâtiments Communicants",
+        "description": "",
+        "organisme": "LYCEE BOIS D'OLIVE",
+        "ville": "RAVINE DES CABRIS ",
+        "telephone": "0262 49 89 71"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.460937,
+          -21.295912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Fluide Énergie Domotique : Option  Domotique et Bâtiments Communicants",
+        "description": "",
+        "organisme": "URMA du Port",
+        "ville": "Port",
+        "telephone": " 0262 42 10 31"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.304275,
+          -20.934135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Technico-commercial option Matériaux du Bâtiment",
+        "description": "",
+        "organisme": "LYCEE JEAN HINGLO",
+        "ville": "PORT",
+        "telephone": "0262 71 19 10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.29169999999999,
+          -20.949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Systèmes constructifs bois et habitat",
+        "description": "",
+        "organisme": "LYCEE JEAN JOLY",
+        "ville": "Saint Louis",
+        "telephone": "0262 39 75 20"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.435813,
+          -21.271501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Travaux Publics",
+        "description": "",
+        "organisme": "LYCEE JEAN HINGLO",
+        "ville": "PORT",
+        "telephone": "0262 71 19 10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.29169999999999,
+          -20.949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Électrotechnique",
+        "description": "",
+        "organisme": "LYCEE JEAN PERRIN",
+        "ville": "Saint Andre",
+        "telephone": "0262 58 84 59"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.653683,
+          -20.962887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Électrotechnique",
+        "description": "",
+        "organisme": "LYCEE LISLET GEOFFROY",
+        "ville": "SAINTE-CLOTILDE ",
+        "telephone": "0262 90 72 11"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.468963,
+          -20.888282
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Électrotechnique",
+        "description": "",
+        "organisme": "LYCEE ROLAND GARROS ",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 81 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.520226,
+          -21.274174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Électrotechnique",
+        "description": "",
+        "organisme": "URMA du Port",
+        "ville": "Port",
+        "telephone": " 0262 42 10 31"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.304275,
+          -20.934135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Assistant technique d'ingénieur",
+        "description": "",
+        "organisme": "LYCEE AMIRAL LACAZE",
+        "ville": "SAINTE-CLOTILDE ",
+        "telephone": " 0262 93 13 23"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.475719,
+          -20.891956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Assistant technique d'ingénieur",
+        "description": "",
+        "organisme": "LYCEE ROLAND GARROS ",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 81 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.520226,
+          -21.274174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Système numérique Option Électronique et Communication",
+        "description": "",
+        "organisme": "LYCEE ROLAND GARROS ",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 81 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.520226,
+          -21.274174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Système numérique Option Informatique et Réseaux",
+        "description": "",
+        "organisme": "LYCEE JEAN PERRIN",
+        "ville": "Saint Andre",
+        "telephone": "0262 58 84 59"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.653683,
+          -20.962887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BTS – Système numérique Option Informatique et Réseaux",
+        "description": "",
+        "organisme": "LYCEE ROLAND GARROS ",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 81 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.520226,
+          -21.274174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DUT – Génie Civil construction durable",
+        "description": "",
+        "organisme": "IUT",
+        "ville": "Terre Sainte",
+        "telephone": "0262 96 28 70"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.490408,
+          -21.341651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DEUST – Conduite de travaux en éco-construction",
+        "description": "",
+        "organisme": "CNAM",
+        "ville": "Port",
+        "telephone": "0262 42 28 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.318134,
+          -20.950187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TP - Chargé d'affaire du bâtiment",
+        "description": "",
+        "organisme": "URMA Saint-André",
+        "ville": "Saint-André",
+        "telephone": "0262 46 62 00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.65179999999998,
+          -20.968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TP - Technicien Supérieur Géomètre Topographe Option Entreprises TP",
+        "description": "",
+        "organisme": "URMA  Saint-Pierre",
+        "ville": " SAINT-PIERRE ",
+        "telephone": 262961240
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.484825,
+          -21.327971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TP - Conducteur de Travaux du bâtiment, des travaux Publics et du Génie civil ",
+        "description": "",
+        "organisme": "CCI-CIRFIM ",
+        "ville": "Port",
+        "telephone": "0262 43 51 12"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.30653,
+          -20.931243
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MC - Technicien en énergies renouvelables option énergies thermiques",
+        "description": "",
+        "organisme": "LYCEE L'HORIZON",
+        "ville": "SAINTE-CLOTILDE ",
+        "telephone": "0262 48 44 64"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.484984,
+          -20.905997
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "LP - Métiers du BTP Génie Civil et Construction spécialité gestion de projet et conduite de travaux",
+        "description": "",
+        "organisme": "IUT",
+        "ville": "Terre Sainte",
+        "telephone": "0262 96 28 70"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.490408,
+          -21.341651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "LP - Métiers de l'Energétique, de l'environnement et du Génie Climatique spécialité maîtrise de l'énergie et énergies renouvelables",
+        "description": "",
+        "organisme": "IUT",
+        "ville": "Terre Sainte",
+        "telephone": "0262 96 28 70"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.490408,
+          -21.341651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "LP – Maîtrise de l'efficacité énergétique des Bâtiments",
+        "description": "",
+        "organisme": "URMA du Port",
+        "ville": "Port",
+        "telephone": " 0262 42 10 31"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.304275,
+          -20.934135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Licence – Architecture",
+        "description": "",
+        "organisme": "ECOLE D'ARCHITECTURE – ESA",
+        "ville": "Port",
+        "telephone": "0262 45 71 70"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.298196,
+          -20.938964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Licence – Sciences, Technologies, Santé mention sciences de l'ingénieur en construction et aménagement parcours ingénierie des travaux du BTP",
+        "description": "",
+        "organisme": "CNAM",
+        "ville": "Port",
+        "telephone": "0262 42 28 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.318134,
+          -20.950187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Licence – Génie Civil ",
+        "description": "",
+        "organisme": "UFR SHE",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 92 43"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.507599,
+          -21.270787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CGPE - Adaptation Technicien Supérieur",
+        "description": "",
+        "organisme": "LYCEE ROLAND GARROS ",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 81 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.520226,
+          -21.274174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Master - Ville et Environnements Urbains",
+        "description": "",
+        "organisme": "UFR SHE",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 92 43"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.507599,
+          -21.270787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Master – Génie Civil",
+        "description": "",
+        "organisme": "UFR SHE",
+        "ville": "LE TAMPON ",
+        "telephone": "0262 57 92 43"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.507599,
+          -21.270787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DI - Construction et aménagement parcours travaux",
+        "description": "",
+        "organisme": "CNAM",
+        "ville": "Port",
+        "telephone": "0262 42 28 37"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.318134,
+          -20.950187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "EA - Architecture, ville et territoire en milieu Tropicale",
+        "description": "",
+        "organisme": "ECOLE D'ARCHITECTURE – ESA",
+        "ville": "Port",
+        "telephone": "0262 45 71 70"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.298196,
+          -20.938964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "EI - Bâtiment et énergie",
+        "description": "",
+        "organisme": "CCI-CIRFIM ",
+        "ville": "Port",
+        "telephone": "0262 43 51 12"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.490955,
+          -21.340794
+        ]
+      }
+    }
+  ]
+}
