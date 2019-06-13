@@ -40,22 +40,14 @@ function forEachFeature(feature, marker)
 };
 
 
-// Variable qui va stocké les informations du marker à ajouté
-var AjoutMarker = L.geoJSON(null, {
-    onEachFeature: forEachFeature, 
-    pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, OptionsMarkers);
-	}
- });
+
 
 // Récupère les données du fichier GeoJSON et crée chaque marker.
 $.getJSON(url, function(geojson) 
 {
-    var points = L.geoJSON(geojson);
+    var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});
     var markerCluster = L.markerClusterGroup();
-
     points.addTo(markerCluster);
-
     markerCluster.addTo(map);
 });
 
