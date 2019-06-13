@@ -4,11 +4,11 @@ var url = "carto.geojson";
 
 // Variable de la map
 var map = L.map('map', {
-    minZoom: 9,
+    minZoom: 7,
     maxBounds: 150
 });
         
-map.setView([-21.136998,55.51512], 9); // Coordonée ou la map va se recentré ( Ile de la reunion )
+map.setView([-21.136998,55.51512], 5); // Coordonée ou la map va se recentré ( Ile de la reunion )
 
 // On initialise map 
 var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ 
@@ -39,6 +39,7 @@ function forEachFeature(feature, marker)
 	marker.bindPopup(ContenuePopup);
 };
 
+
 // Variable qui va stocké les informations du marker à ajouté
 var AjoutMarker = L.geoJSON(null, {
     onEachFeature: forEachFeature, 
@@ -48,10 +49,13 @@ var AjoutMarker = L.geoJSON(null, {
  });
 
 // Récupère les données du fichier GeoJSON et crée chaque marker.
-$.getJSON(url, function(data) 
-{AjoutMarker.addData(data);});
-	
-// Ajout du marker à la map	
-AjoutMarker.addTo(map);
+$.getJSON(url, function(geojson) 
+{
+    var points = L.geoJSON(geojson);
+    var markerCluster = L.markerClusterGroup();
 
+    points.addTo(markerCluster);
+
+    markerCluster.addTo(map);
+});
 
