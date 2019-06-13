@@ -5,11 +5,15 @@ var url = "carto.geojson";
 // Variable de la map
 var map = L.map('map', {
     minZoom: 7,
-    maxBounds: 150
+    maxZoom: 17
 });
         
 map.setView([-21.136998,55.51512], 5); // Coordonée ou la map va se recentré ( Ile de la reunion )
-
+map.bounds = [],
+map.setMaxBounds([
+    [-20.636998,56.05000],
+    [-21.536998,55.00212]
+]);
 // On initialise map 
 var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ 
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
