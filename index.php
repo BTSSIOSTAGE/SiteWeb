@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-    <!-- Aide : http://bl.ocks.org/ebrelsford/11295124 | https://leafletjs.com/examples/geojson/-->
+    <!-- Aide : http://bl.ocks.org/ebrelsford/11295124 | https://leafletjs.com/examples/geojson/   | Leaflet Cookbook-->
     <head>
         <title>Map</title>
 	<meta charset="utf-8" />
@@ -16,6 +16,7 @@
         <script src="./inc/leaflet/leaflet.js"></script> <!-- JS Leaflet -->
         <script src="./inc/markercluster/leaflet.markercluster.js"/> </script> <!-- MarkerCluster -->
         <script src="./inc/markercluster/leaflet.markercluster-src.js"/> </script><!-- MarkerCluster -->
+        <script src="./inc/js/leaflet.feature.groupe.js"></script>
         <script src="./inc/js/jquery.min.js"></script>	<!-- JS Jquery -->
     </head>
     <body>

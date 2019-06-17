@@ -1,0 +1,173 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.65256,-20.96774 ]
+    },
+    "properties": {
+    "name":"BP Carreleur mosaïste",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-André",
+    "téléphone":" 0262 46 62 00"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.30639,-20.9338 ]
+    },
+    "properties": {
+    "name":"BP Installation en équipements électriques",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Le Port",
+    "téléphone":" 0262 42 10 31"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.48130,-21.3285 ]
+    },
+    "properties": {
+    "name":"BP Maçon ",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-Pierre",
+    "téléphone":" 0262 96 12 40"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.65256,-20.96774 ]
+    },
+    "properties": {
+    "name":"BP Maçon",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-André",
+    "téléphone":" 0262 46 62 00"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.65256,-20.96774 ]
+    },
+    "properties": {
+    "name":"BP Menuiserie aluminium verre",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-André",
+    "téléphone":" 0262 46 62 00"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.65256,-20.96774 ]
+    },
+    "properties": {
+    "name":"BP Menuisier",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-André",
+    "téléphone":" 0262 46 62 00"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.65256,-20.96774 ]
+    },
+    "properties": {
+    "name":"BP Monteur installateur génie climatique et sanitaire",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-André",
+    "téléphone":" 0262 46 62 00"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.65256,-20.96774 ]
+    },
+    "properties": {
+    "name":"BP Peintre applicateur de revêtement",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Saint-André",
+    "téléphone":" 0262 46 62 00"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.47519,-20.8958 ]
+    },
+    "properties": {
+    "name":"BP Métallier",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Sainte-Clotilde",
+    "téléphone":"0262 28 18 30"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.30639,-20.9338 ]
+    },
+    "properties": {
+    "name":"BP Electricien",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Le Port",
+    "téléphone":" 0262 42 10 31"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.47519,-20.8958 ]
+    },
+    "properties": {
+    "name":"BP Métiers de la piscine",
+    "description":"",
+    "organisme":"CFA Académique",
+    "ville":"Sainte-Clotilde",
+    "téléphone":"0262 28 18 30"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 55.30639,-20.9338 ]
+    },
+    "properties": {
+    "name":"BP Installateur dépanneur froid et conditionnement d'air",
+    "description":"",
+    "organisme":"URMA",
+    "ville":"Le Port",
+    "téléphone":" 0262 42 10 31"
+    }
+  }
+]
+}
