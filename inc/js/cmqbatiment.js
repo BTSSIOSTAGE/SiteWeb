@@ -1,11 +1,19 @@
 //-----------------------------------------Liste des variable--------------------------------------
 //________________VAR FICHIER GEOJSON _______________________________
 // Variable stockant l'url/source du fichier geojson
-var bacpro = "./inc/geo/bacpro.geojson";
-var bts = "./inc/geo/bts.geojson";
-var cap = "./inc/geo/cap.geojson";
-var bp = "./inc/geo/bp.geojson";
-var divers = "./inc/geo/divers.geojson";
+var bbacpro = "./inc/geo/cmqbatiment/bacpro.geojson";
+var bbts = "./inc/geo/cmqbatiment/bts.geojson";
+var bcap = "./inc/geo/cmqbatiment/cap.geojson";
+var bbp = "./inc/geo/cmqbatiment/bp.geojson";
+var bdivers = "./inc/geo/cmqbatiment/divers.geojson";
+
+
+
+
+
+
+
+
 //__________________________________________________________________   
 
 
@@ -102,7 +110,7 @@ function forEachFeature(feature, marker)
 //----------------------------------------- Chargement des fichiers + placements des données --------------------------------------
 
 //_______________________________________________________BAC PRO________________________________________________
-$.getJSON(bacpro, function(geojson) 
+$.getJSON(bbacpro, function(geojson) 
 {
     var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});
     points.addTo(gbacpro);
@@ -110,7 +118,7 @@ $.getJSON(bacpro, function(geojson)
 });
 
 //_________________________________________________________BTS________________________________________________
-$.getJSON(bts, function(geojson) 
+$.getJSON(bbts, function(geojson) 
 {
     var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});
     points.addTo(gbts);
@@ -119,7 +127,7 @@ $.getJSON(bts, function(geojson)
 });
 
 //_________________________________________________________BP________________________________________________
-$.getJSON(bp, function(geojson) 
+$.getJSON(bbp, function(geojson) 
 {
     var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});   
     points.addTo(gbp);   
@@ -128,7 +136,7 @@ $.getJSON(bp, function(geojson)
 
 
 //_________________________________________________________CAP________________________________________________
-$.getJSON(cap, function(geojson) 
+$.getJSON(bcap, function(geojson) 
 {
     var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});   
     points.addTo(gcap);
@@ -137,7 +145,7 @@ $.getJSON(cap, function(geojson)
 
 //_________________________________________________________DIVERS________________________________________________
 
-$.getJSON(divers, function(geojson) 
+$.getJSON(bdivers, function(geojson) 
 {
     var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}}); 
     points.addTo(gdivers);
