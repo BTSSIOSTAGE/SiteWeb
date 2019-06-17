@@ -17,9 +17,10 @@
         <script src="./inc/markercluster/leaflet.markercluster-src.js"/> </script><!-- MarkerCluster -->
         <script src="./inc/js/leaflet.feature.groupe.js"></script>
         <script src="./inc/js/jquery.min.js"></script>	<!-- JS Jquery -->
+        <?php include ("./inc/navbar.php"); ?>
     </head>
-    <body>
+    <body>  
         <div id='map'></div>
-        <script src="./inc/js/cmqbatiment.js"></script>	<!-- JS Map -->
+      <script src="./inc/js/cmqbatiment.js"></script>	<!-- JS Map -->
     </body>
 </html>

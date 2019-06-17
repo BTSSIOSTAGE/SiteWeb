@@ -61,7 +61,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Aménagement et finition du bâtiment",
@@ -75,7 +75,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Technicien de maintenance des système énergétique et climatique",
@@ -89,7 +89,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Technicien d’études du bâtiment : assistant en architecture ",
@@ -103,7 +103,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Technicien d’études du bâtiment : études et économie",
@@ -117,7 +117,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Technicien d’études du bâtiment : organisation et réalisation du gros œuvre",
@@ -131,7 +131,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Technicien en installation des systèmes énergétiques et climatique",
@@ -145,7 +145,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"BAC PRO Technicien géomètre – topographe",

@@ -6,10 +6,12 @@
         <title>Map</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="./inc/logo.ico" />
+        
+        <link rel="stylesheet" href="./inc/css/style.css"/> <!-- html, body & #map -->
+        <?php include ("./inc/navbar.php"); ?>
     </head>
     <body>
-        <a href="cmqbatiment.php">map CmqBatiment</a> <br>
-        <a href="cmqnumerique.php">map CmqNumerique</a>
+    
     </body>
 </html>

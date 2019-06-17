@@ -299,7 +299,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0229 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"CAP Maçon",
@@ -313,7 +313,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0230 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"CAP Installateur sanitaire",
@@ -327,7 +327,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0231 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"CAP Installateur en froid et climatisation",
@@ -341,7 +341,7 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ 55.62049,-21.0232 ]
+       "coordinates":  [ 55.68317,-21.002812 ]
     },
     "properties": {
     "name":"CAP Peintre applicateur de revêtement ",
