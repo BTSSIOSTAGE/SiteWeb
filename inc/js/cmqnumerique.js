@@ -114,5 +114,12 @@ $.getJSON(nbts, function(geojson)
 
 });
 
+L.control.search({
+    layer: Groupe,
+    initial: false,
+    propertyName: "name"
+       
+}).addTo(map);
+
 
 L.control.layers(basemapControl, layerControl).addTo(map);

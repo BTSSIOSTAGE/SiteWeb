@@ -108,7 +108,7 @@ L.Control.Search = L.Control.extend({
 			circle: {					//draw a circle in location found
 				radius: 10,
 				weight: 3,
-				color: '#e03',
+				color: '#3388ff',
 				stroke: true,
 				fill: false
 			}
@@ -246,6 +246,7 @@ L.Control.Search = L.Control.extend({
 		this._cancel.style.display = 'none';
 		this._hideTooltip();
 		this.fire('search:cancel');
+                
 		return this;
 	},
 	

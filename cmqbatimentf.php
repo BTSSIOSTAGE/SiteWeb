@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <!-- Aide : http://bl.ocks.org/ebrelsford/11295124 | https://leafletjs.com/examples/geojson/   | Leaflet Cookbook-->
@@ -15,6 +14,6 @@
     </head>
     <body>
         <div id='map'></div>
-        <script src="./inc/js/cmqnumerique.js"></script>	<!-- JS Map -->
+        <script src="./inc/js/cmqbatimentf.js"></script>	<!-- JS Map -->     
     </body>
 </html>

@@ -61,7 +61,7 @@
 	position: absolute;
 	right: 28px;
 	margin: 6px 0;
-	background: url(../images/2.png) no-repeat 0 -46px;
+	background: url(../images/cancel.png) no-repeat 1px 3px;
 	text-decoration: none;
 	filter: alpha(opacity=80);
 	opacity: .8
@@ -89,12 +89,12 @@
 	float: left;
 	width: 30px;
 	height: 30px;
-	background: url(../images/2.png) no-repeat 4px 4px #fff;
+	background: url(../images/search.png) no-repeat 1px 1px #fff;
 	border-radius: 4px
 }
 
 .leaflet-control-search .search-button:hover {
-	background: url(../images/2.png) no-repeat 4px -20px #fafafa
+	background: url(../images/search.png) no-repeat 1px 1px #fafafa
 }
 
 .leaflet-control-search .search-tooltip {
