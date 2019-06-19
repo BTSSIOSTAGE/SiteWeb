@@ -1,17 +1,7 @@
 //-----------------------------------------Liste des variable--------------------------------------
 //________________VAR FICHIER GEOJSON _______________________________
 // Variable stockant l'url/source du fichier geojson
-var bbacpro = "./inc/geo/cmqbatiment/bacpro.geojson";
-var bbts = "./inc/geo/cmqbatiment/bts.geojson";
-var bcap = "./inc/geo/cmqbatiment/cap.geojson";
-var bbp = "./inc/geo/cmqbatiment/bp.geojson";
-var bdivers = "./inc/geo/cmqbatiment/divers.geojson";
-
-
-
-
-
-
+var formations = "./inc/geo/cmqbatiment/formation.geojson";
 
 
 //__________________________________________________________________   
@@ -34,14 +24,16 @@ var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
                             
 
 //________________GROUPE POUR CLUSTER __________________ 
+
 var Groupe = new L.markerClusterGroup().addTo(map);
 
-var gbts = L.featureGroup.subGroup(Groupe).addTo(map);
 var gbacpro = L.featureGroup.subGroup(Groupe).addTo(map);
+var gbts = L.featureGroup.subGroup(Groupe).addTo(map);
 var gcap = L.featureGroup.subGroup(Groupe).addTo(map);
 var gbp = L.featureGroup.subGroup(Groupe).addTo(map);
 var gdivers = L.featureGroup.subGroup(Groupe).addTo(map);
 //__________________________________________________________________        
+
 
 
 
@@ -110,47 +102,115 @@ function forEachFeature(feature, marker)
 //----------------------------------------- Chargement des fichiers + placements des données --------------------------------------
 
 //_______________________________________________________BAC PRO________________________________________________
-$.getJSON(bbacpro, function(geojson) 
+
+$.getJSON(formations, function(geojson) 
 {
-    var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});
+    var points = L.geoJSON(geojson, 
+    {
+       
+        onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) 
+        {
+            return L.circleMarker(latlng, OptionsMarkers);
+        }       ,
+        filter: function(feature, gbacpro) {   
+         return (feature.properties.formation  === "BACPRO" );
+        }
+    });
     points.addTo(gbacpro);
     lbacpro.addLayer(gbacpro);
+  
 });
 
-//_________________________________________________________BTS________________________________________________
-$.getJSON(bbts, function(geojson) 
+
+//_______________________________________________________BTS________________________________________________
+
+$.getJSON(formations, function(geojson) 
 {
-    var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});
+    var points = L.geoJSON(geojson, 
+    {
+       
+        onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) 
+        {
+            return L.circleMarker(latlng, OptionsMarkers);
+        }       ,
+        filter: function(feature, gbacpro) {   
+         return (feature.properties.formation  === "BTS" );
+        }
+    });
     points.addTo(gbts);
     lbts.addLayer(gbts);
-
-});
-
-//_________________________________________________________BP________________________________________________
-$.getJSON(bbp, function(geojson) 
-{
-    var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});   
-    points.addTo(gbp);   
-    lbp.addLayer(gbp);   
+  
 });
 
 
-//_________________________________________________________CAP________________________________________________
-$.getJSON(bcap, function(geojson) 
+//_______________________________________________________CAP________________________________________________
+
+$.getJSON(formations, function(geojson) 
 {
-    var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}});   
+    var points = L.geoJSON(geojson, 
+    {
+       
+        onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) 
+        {
+            return L.circleMarker(latlng, OptionsMarkers);
+        }       ,
+        filter: function(feature, gbacpro) {   
+         return (feature.properties.formation  === "CAP" );
+        }
+    });
     points.addTo(gcap);
-    lcap.addLayer(gcap);       
+    lcap.addLayer(gcap);
+  
 });
 
-//_________________________________________________________DIVERS________________________________________________
 
-$.getJSON(bdivers, function(geojson) 
+
+//_______________________________________________________BP________________________________________________
+$.getJSON(formations, function(geojson) 
 {
-    var points = L.geoJSON(geojson, {onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, OptionsMarkers);}}); 
-    points.addTo(gdivers);
-    ldivers.addLayer(gdivers);    
+    var points = L.geoJSON(geojson, 
+    {
+       
+        onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) 
+        {
+            return L.circleMarker(latlng, OptionsMarkers);
+        }       ,
+        filter: function(feature, gbacpro) {   
+         return (feature.properties.formation  === "BP" );
+        }
+    });
+    points.addTo(gbp);
+    lbp.addLayer(gbp);
+  
 });
 
+
+//_______________________________________________________DIVERS________________________________________________
+
+$.getJSON(formations, function(geojson) 
+{
+    var points = L.geoJSON(geojson, 
+    {
+       
+        onEachFeature: forEachFeature, pointToLayer: function (feature, latlng) 
+        {
+            return L.circleMarker(latlng, OptionsMarkers);
+        }       ,
+        filter: function(feature, gbacpro) {   
+         return (feature.properties.formation  === "DIVERS" );
+        }
+    });
+    points.addTo(gdivers);
+    ldivers.addLayer(gdivers);
+  
+});
+
+
+L.control.search({
+    layer: Groupe,
+    initial: false,
+    propertyName: "name"
+       
+}).addTo(map);
 
 L.control.layers(basemapControl, layerControl).addTo(map);

@@ -18,6 +18,13 @@
         <script src="./inc/markercluster/leaflet.markercluster-src.js"/> </script><!-- MarkerCluster -->
         <script src="./inc/js/leaflet.feature.groupe.js"></script>
         <script src="./inc/js/jquery.min.js"></script>	<!-- JS Jquery -->
+        
+        
+        <script src="./inc/search/leaflet-search.js"></script>
+        <script src="./inc/search/leaflet-search.src.js"></script>
+        <script src="./inc/search/tabletop.min.js"></script>
+        
+        <link rel="stylesheet" href="./inc/search/leaflet-search.min.css/> 
         <?php include ("./inc/navbar.php"); ?>
     </head>
     <body>

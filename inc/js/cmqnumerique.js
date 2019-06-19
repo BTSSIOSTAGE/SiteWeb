@@ -115,5 +115,4 @@ $.getJSON(nbts, function(geojson)
 });
 
 
-
 L.control.layers(basemapControl, layerControl).addTo(map);
