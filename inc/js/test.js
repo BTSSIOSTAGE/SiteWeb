@@ -28,16 +28,35 @@ $.post('./addpointmap.php',
         
         data = JSON.parse(data);
         
-        for (var i = 0; i < data.length; i++) {
-        var name = data[i]['name'];
-        var lat = data[i]['lat'];
-        var lon = data[i]['lon'];
+
+
+        
+        for (var i = 0; i < data.length; i++) 
+        {
+            var libelle_o = data[i]['libelle_o'];
+            var rue1 = data[i]['rue1'];
+            var rue2 = data[i]['rue2'];
+            var lat = data[i]['lat'];
+            var lng = data[i]['lng'];
+            
+            var libelle_f = data[i]['libelle_f'];
+            var capacite = data[i]['capacite'];
+            var niv_requis = data[i]['niv_requis'];
+            var type = data[i]['type'];
        
-        var marker = L.marker([lat, lon]);
-        
-        marker.bindPopup(name);
-        
-        marker.addTo(map);
+            var marker = L.marker([lat, lng]);
+            
+            var ContenuePopup = "<b>" +
+            libelle_o + "</b></br>" +
+            rue1 + "</br>" +
+            rue2 + "</br>" +
+            libelle_f + "</br>" +
+            capacite + "</br>" +
+            niv_requis + "</br>";
+
+            marker.bindPopup(ContenuePopup);
+
+            marker.addTo(map);
         
        }
         
