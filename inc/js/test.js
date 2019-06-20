@@ -27,10 +27,7 @@ $.post('./addpointmap.php',
         ]);
         
         data = JSON.parse(data);
-        
 
-
-        
         for (var i = 0; i < data.length; i++) 
         {
             var libelle_o = data[i]['libelle_o'];
@@ -43,24 +40,34 @@ $.post('./addpointmap.php',
             var capacite = data[i]['capacite'];
             var niv_requis = data[i]['niv_requis'];
             var type = data[i]['type'];
-       
-            var marker = L.marker([lat, lng]);
             
-            var ContenuePopup = "<b>" +
-            libelle_o + "</b></br>" +
-            rue1 + "</br>" +
-            rue2 + "</br>" +
-            libelle_f + "</br>" +
-            capacite + "</br>" +
-            niv_requis + "</br>";
+            
+            function forEachFeature(data, marker) 
+            {
+                    var ContenuePopup = "<b>" +
+                    libelle_f + "</b></br>" +
+                    rue1 + "</br>" +
+                    rue2 + "</br>" +
+                    libelle_o + "</br>" +
+                    capacite + "</br>" +
+                    niv_requis + "</br>";
 
-            marker.bindPopup(ContenuePopup);
+                    marker.bindPopup(ContenuePopup);
+
+            };
+       
+            var marker = L.circleMarker([lat, lng]);
+            
+            
 
             marker.addTo(map);
+            
+           
         
        }
-        
+  
    });
+
    
    
    
