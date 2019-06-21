@@ -597,7 +597,7 @@ L.Control.Search = L.Control.extend({
         console.warn("propertyName '"+propName+"' not found in shape"); 
       }
     }
-    else if(layer.hasOwnProperty('feature'))//GeoJSON
+    else if(layer.hasOwnProperty('data'))//GeoJSON
     {
       if(layer.data.hasOwnProperty(propName))
       {

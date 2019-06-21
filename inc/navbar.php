@@ -23,6 +23,13 @@
           </li>
         </ul>
       </li>
+      <li><a href="#">Organismes</a>
+          <ul>
+            <li><a href="add.php">Ajouté</a></li>
+            <li><a href="#">Modifié</a>
+            <li><a href="#">Supprimé</a></li>
+          </ul>
+      </li>
       <li style="float:right"><a href="#" >Login</a></li>
     </ul>
 </nav>

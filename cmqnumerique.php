@@ -12,6 +12,7 @@
             include ("./inc/navbar.php"); 
             require('./inc/headjscss.php');
         ?>
+        <style> #map{width: 100%;height: 94vh;z-index:1;}</style>
     </head>
     <body>
         <div id='map'></div>
