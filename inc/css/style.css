@@ -110,7 +110,7 @@ nav ul:after { clear: both; }
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -120,3 +120,50 @@ nav ul:after { clear: both; }
 .button3 {background-color: #f44336;} /* Red */ 
 .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
 .button5 {background-color: #555555;} /* Black */
+
+
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.mainbox{
+    margin: 2%; 
+    
+}
+
+
+.listeorga{
+   font-size: 12px;
+   position: relative;
+   left: 10%;
+   background-color:white;
+   margin:0%; 
+   box-sizing: border-box;
+   width: 80%;
+   border: solid #5B6DCD 10px;
+   padding: 15px;
+    
+}
+
+.form-inline { 
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}

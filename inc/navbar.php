@@ -25,10 +25,11 @@
       </li>
       <li><a href="#">Organismes</a>
           <ul>
-            <li><a href="add.php">Ajouté</a></li>
-            <li><a href="#">Modifié</a>
-            <li><a href="#">Supprimé</a></li>
+            <li><a href="addorga.php">Ajouté</a></li>
+            <li><a href="gorganisme.php">Géré</a>
           </ul>
+      </li>
+      <li><a href="gformations.php">Formations</a>
       </li>
       <li style="float:right"><a href="#" >Login</a></li>
     </ul>

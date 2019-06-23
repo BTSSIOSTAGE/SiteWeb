@@ -1,3 +1,4 @@
+
 $.post('./addpointmap.php',
     function(data) {
         if (data === 'connection error') {

@@ -12,7 +12,7 @@ $adr2 = strip_tags($_POST['paddr2']);
 $ville = strip_tags($_POST['pville']);
 $cp = strip_tags($_POST['pcp']);
 
-$dbconn->addOrganisme($lat, $lng, $name, $adr1, $adr2, $ville, $cp);
+$dbconn->addOrganismes($lat, $lng, $name, $adr1, $adr2, $ville, $cp);
 
 
 
