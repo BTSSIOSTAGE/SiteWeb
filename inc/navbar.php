@@ -25,8 +25,8 @@
       </li>
       <li><a href="#">Organismes</a>
           <ul>
-            <li><a href="addorga.php">Ajouté</a></li>
-            <li><a href="gorganisme.php">Géré</a>
+            <li><a href="addorga.php">Ajouter</a></li>
+            <li><a href="gorganisme.php">Gérer</a>
           </ul>
       </li>
       <li><a href="gformations.php">Formations</a>

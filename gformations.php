@@ -58,9 +58,9 @@
                     <input type="text" class="form-control" id="modalite_spe_recrutement" name="modalite_spe_recrutement"/>
                   </div>
                     <div class="form-group">
-                    <label for="name" class="control-label">Organisme référent :</label>
-                    <select name="listeorga" id="listeorga"></select>
-                    <input type="text" class="form-control" id="organisme_id" name="organisme_id"/>
+                    <label for="name" class="control-label">Organisme référent : </label>
+                    <select class="select-orga" name="listeorga" id="listeorga"></select>
+                    <input type="hidden" class="form-control" id="organisme_id" name="organisme_id"/>
                   </div>
                 
                 </form>

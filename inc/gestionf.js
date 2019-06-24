@@ -25,7 +25,7 @@ $(document).ready(function(){
                 json = JSON.parse(json);
                 $.each(json, function(index, organisme)
                 {
-                    var action = "<option value='"+organisme.organisme_id+"'>'"+ organisme['libelle_o'] +"'</option>";
+                    var action = "<option value='"+organisme.organisme_id+"'>"+ organisme['libelle_o'] +"</option>";
                     $('#listeorga').append(action);
                     
                 });
@@ -148,11 +148,11 @@ $(document).ready(function(){
                     tr.append("<td>" + formation.capacite + "</td>");
                     tr.append("<td>" + formation.niv_requis + "</td>");
                     tr.append("<td>" + formation.modalite_spe_recrutement + "</td>");
-                    tr.append("<td>" + formation.organisme_id + "</td>");
+                    tr.append("<td>" + formation.libelle_o + "</td>");
  
 	            	var action = "<td><div class='btn-group' data-toggle='buttons'>";
-                        action += "<a target='_blank' class='bouttonform button2 edit_data' id='"+formation.formation_id+"'>Edit</a>";
-	            	action += "<a target='_blank' class='bouttonform button3 delete_data' id='"+formation.formation_id+"'>Delete</a>";
+                        action += "<a target='_blank' class='bouttonform button2 edit_data' id='"+formation.formation_id+"'>Modifier</a>";
+	            	action += "<a target='_blank' class='bouttonform button3 delete_data' id='"+formation.formation_id+"'>Supprimer</a>";
 	            tr.append(action);
 	            $('#emp_body').append(tr);
 		});

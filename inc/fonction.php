@@ -132,7 +132,7 @@ class ConnectToDb {
         
         public function get_formations() {
             $dbconn =  $this->connect();
-            $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id FROM formation_organisme f";
+            $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id , organisme.libelle_o FROM formation_organisme f LEFT JOIN organisme ON organisme.organisme_id = f.organisme_id";
                 $queryRecords = pg_query($dbconn, $sql) or die("error to fetch employees data");
                 $data = pg_fetch_all($queryRecords);
                 echo json_encode($data);
