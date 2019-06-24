@@ -78,7 +78,7 @@ $.post('./addpointmap.php',
         
         // Recupere donnée bdd en JSON
         data = JSON.parse(data);
-
+        console.log(data);
         for (var i = 0; i < data.length; i++) 
         {
             var libelle_o = data[i]['libelle_o'];
@@ -92,11 +92,16 @@ $.post('./addpointmap.php',
             var niv_requis = data[i]['niv_requis'];
             var type = data[i]['type'];
             
-            addOrganisme(lat,lng,type, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis);
+            var cp  = data[i]['libellecp'];
+            
+            var libelleville = data[i]['libelleville'];
+            
+            
+            addOrganisme(lat,lng,type, libelle_o, rue1, rue2, cp , libelleville ,libelle_f,capacite,niv_requis);
                  
         }
         
-        function addOrganisme(lat , lng , type, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis){
+        function addOrganisme(lat , lng , type, libelle_o, rue1, rue2, cp , libelleville , libelle_f,capacite,niv_requis){
             
             
             
@@ -117,14 +122,16 @@ $.post('./addpointmap.php',
                organisme.addTo(gdivers); 
                ldivers.addLayer(gdivers); 
             }
-            addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis);
+            addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis, cp , libelleville);
         }
         
-        function addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis){
+        function addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis, cp , libelleville ){
             var ContenuePopup = "<b>" +
             libelle_f + "</b></br>" +
             rue1 + "</br>" +
             rue2 + "</br>" +
+            libelleville + "</br>" +
+            cp + "</br>" +
             libelle_o + "</br>" +
             capacite + "</br>" +
             niv_requis + "</br>";

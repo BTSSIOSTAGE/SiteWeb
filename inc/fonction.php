@@ -275,7 +275,7 @@ class ConnectToDb {
         public function getFormationsList()
 	{
             $dbconn =  $this->connect();
-            $query = "SELECT organisme.libelle_o , adresse.rue1 , adresse.rue2 , adresse.lat , adresse.lng, formation_organisme.libelle_f , formation_organisme.capacite, formation_organisme.niv_requis,formation_organisme.type FROM adresse , organisme , formation_organisme WHERE organisme.organisme_id = adresse.organisme_id AND organisme.organisme_id = formation_organisme.organisme_id";
+            $query = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp , adr.rue1 , adr.rue2 , adr.lat , adr.lng, fo.libelle_f , fo.capacite, fo.niv_requis,fo.type FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
 
             $result = pg_query($dbconn, $query) or die('query error');
 
@@ -284,15 +284,17 @@ class ConnectToDb {
             $citiesArray = array();
 
             while ($row = pg_fetch_row($result)) {
-                $city["libelle_o"] = $row[0];
-                $city["rue1"] = $row[1];    
-                $city["rue2"] = $row[2];
-                $city["lat"] = $row[3];
-                $city["lng"] = $row[4];
-                $city["libelle_f"] = $row[5];
-                $city["capacite"] = $row[6];
-                $city["niv_requis"] = $row[7];
-                $city["type"] = $row[8];
+                $city["libelle_o"] = $row[1];
+                $city["libelleville"] = $row[2];
+                $city["libellecp"] = $row[3];
+                $city["rue1"] = $row[4];
+                $city["rue2"] = $row[5];    
+                $city["lat"] = $row[6];
+                $city["lng"] = $row[7];
+                $city["libelle_f"] = $row[8];
+                $city["capacite"] = $row[9];
+                $city["niv_requis"] = $row[10];
+                $city["type"] = $row[11];
                 array_push($citiesArray, $city);
             }
             pg_close($dbconn);
