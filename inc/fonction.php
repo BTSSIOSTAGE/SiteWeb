@@ -46,9 +46,9 @@ class ConnectToDb {
         protected $listOrganisme = array();
         public function connect()
 	{
-		$host = "127.0.0.1";
-		$username = "postgres";
-		$mdp = "root";
+		$host = "172.19.40.43";
+		$username = "fabrice";
+		$mdp = "fabrice";
 		$db = "Stage";
                 $port = "5432";
                 try{
@@ -103,7 +103,7 @@ class ConnectToDb {
                  echo "<script>console.debug( \"PHP DEBUG: $resultcp\" );</script>";
             }
             
-            $tabcpid = pg_fetch_array(pg_query("SELECT currval('ville_ville_id_seq') as tabcpidr"));
+            $tabcpid = pg_fetch_array(pg_query("SELECT currval('codepostal_cp_id_seq') as tabcpidr"));
             $id_cp = $tabcpid["tabcpidr"];
             
             //CP DE VILLE
