@@ -1,5 +1,7 @@
 <?php
 
+
+
 $params = $_REQUEST;
 $action = isset($params['action']) && $params['action'] !='' ? $params['action'] : 'edit';
 $dbconn = new ConnectToDb();
@@ -36,6 +38,9 @@ switch($action) {
     case 'fedit':
 	$dbconn->updateFormation();
         break;
+    case 'deroullist':
+	$dbconn->getDeroulList();
+        break;
     default:
     return;
 }
@@ -60,6 +65,7 @@ class ConnectToDb {
                 //echo "<script>console.debug( \"PHP DEBUG: $port\" );</script>";
 		return $dbconn;
 	}
+        
 	public function addOrganismes($lat, $lng, $name, $adr1, $adr2, $ville, $cp)
 	{
             // ORGANISME
@@ -190,11 +196,11 @@ class ConnectToDb {
               $resp['status'] = false;
               
               
-              $data['libelle_f'] = filter_input(INPUT_POST, 'libelle_f');
+              $data['libelle_f'] = filter_input(INPUT_POST, "'libelle_f'");
               $data['type'] = filter_input(INPUT_POST, 'type');
               $data['capacite'] = filter_input(INPUT_POST, 'capacite');
               $data['niv_requis'] = filter_input(INPUT_POST, 'niv_requis');
-              $data['modalite_spe_recrutement'] = filter_input(INPUT_POST, 'modalite_spe_recrutement');
+              $data['modalite_spe_recrutement'] = filter_input(INPUT_POST, "'modalite_spe_recrutement'");
               $data['organisme_id'] = filter_input(INPUT_POST, 'organisme_id');
 
               pg_insert($dbconn, 'formation_organisme' , $data) or die("error to insert employee data");
@@ -275,7 +281,7 @@ class ConnectToDb {
         public function getFormationsList()
 	{
             $dbconn =  $this->connect();
-            $query = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp , adr.rue1 , adr.rue2 , adr.lat , adr.lng, fo.libelle_f , fo.capacite, fo.niv_requis,fo.type FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
+            $query = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp , adr.rue1 , adr.rue2 , adr.lat , adr.lng, fo.libelle_f , fo.capacite, fo.niv_requis,fo.type,fo.modalite_spe_recrutement FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
 
             $result = pg_query($dbconn, $query) or die('query error');
 
@@ -295,12 +301,26 @@ class ConnectToDb {
                 $city["capacite"] = $row[9];
                 $city["niv_requis"] = $row[10];
                 $city["type"] = $row[11];
+                $city["modalite_spe_recrutement"] = $row[12];
                 array_push($citiesArray, $city);
             }
             pg_close($dbconn);
             
             return json_encode($citiesArray, JSON_UNESCAPED_UNICODE);
 	}
+        public function getDeroulList(){          
+            if(isset($_GET['go'])) {   // requête qui récupère les localités un
+               
+                $dbconn =  $this->connect();
+                $queryoranisme = "SELECT * FROM organisme ORDER BY libelle_o ASC";
+                
+                
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
+                $data = pg_fetch_all($queryRecords);
+                echo json_encode($data);
+
+            }
+        }
 }
 
 // = new ConnectToDb();

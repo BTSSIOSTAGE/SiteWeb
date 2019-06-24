@@ -14,7 +14,36 @@ $(document).ready(function(){
         
     });
     
+    var $listederou = $('#listeorga');
     
+    $listederou.append('<option value="">Selectionnez ...</option>');
+        $.ajax(
+        {
+            url: './inc/fonction.php?action=deroullist',
+            data: 'go', // on envoie $_GET['go']
+            success: function(json) {
+                json = JSON.parse(json);
+                $.each(json, function(index, organisme)
+                {
+                    var action = "<option value='"+organisme.organisme_id+"'>'"+ organisme['libelle_o'] +"'</option>";
+                    $('#listeorga').append(action);
+                    
+                });
+                console.log(json);
+               
+        }
+
+        });
+        
+        
+        // à la sélection de la localité un dans la liste
+        $listederou.on('change', function() {
+            var val = $(this).val(); // on récupère la valeur de la localité un
+            $('#organisme_id').val(val);
+            console.log(val);
+
+        });
+         
         
    $(document).on('click', '.edit_data', function(){  
            var id = $(this).attr("id");
@@ -130,6 +159,8 @@ $(document).ready(function(){
 		}
 		});
 	}
+        
+
 	
 });
 

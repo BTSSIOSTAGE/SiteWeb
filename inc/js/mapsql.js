@@ -95,13 +95,14 @@ $.post('./addpointmap.php',
             var cp  = data[i]['libellecp'];
             
             var libelleville = data[i]['libelleville'];
+            var modalitesperecrutement = data[i]['modalite_spe_recrutement'];
             
             
-            addOrganisme(lat,lng,type, libelle_o, rue1, rue2, cp , libelleville ,libelle_f,capacite,niv_requis);
+            addOrganisme(lat,lng,type, libelle_o, rue1, rue2, cp , libelleville ,libelle_f,capacite,niv_requis,modalitesperecrutement);
                  
         }
         
-        function addOrganisme(lat , lng , type, libelle_o, rue1, rue2, cp , libelleville , libelle_f,capacite,niv_requis){
+        function addOrganisme(lat , lng , type, libelle_o, rue1, rue2, cp , libelleville , libelle_f,capacite,niv_requis,modalitesperecrutement){
             
             
             
@@ -122,22 +123,30 @@ $.post('./addpointmap.php',
                organisme.addTo(gdivers); 
                ldivers.addLayer(gdivers); 
             }
-            addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis, cp , libelleville);
+            addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis, cp , libelleville,modalitesperecrutement,type);
         }
         
-        function addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis, cp , libelleville ){
-            var ContenuePopup = "<b>" +
-            libelle_f + "</b></br>" +
-            rue1 + "</br>" +
-            rue2 + "</br>" +
-            libelleville + "</br>" +
-            cp + "</br>" +
-            libelle_o + "</br>" +
-            capacite + "</br>" +
-            niv_requis + "</br>";
+        
+        function addPopup(organisme, libelle_o, rue1, rue2, libelle_f,capacite,niv_requis, cp , libelleville,modalitesperecrutement ,type){
+            var ContenuePopup = "<b>"+ libelle_f + "</b> </br></br></br>"+ // Titre formation
+            "<b> Organisme :</b> " + libelle_o + "</br></br>"+
+            "<b> Site :</b> " + "</br></br>"+
+            "<b> Sanction diplôme certificat :</b> " + type + "</br></br>"+
+            "<b> Pré-requis :</b> " + modalitesperecrutement + "</br></br>"+
+            "<b> Adresse :</b> " + rue1 + "</br></br>"+
+            "<b> Complément d'adresse :</b> " + rue2 + "</br></br>"+
+            "<b> Ville :</b> " + libelleville + "</br></br>"+
+            "<b> Code postal :</b> " + cp + "</br></br>"+
+            "<b> Téléphone :</b> " + "</br></br>"+
+            "<b> Fax :</b> " + "</br></br>"+
+            "<b> Mail :</b> " + "</br></br>"+
+            "<b> Contact :</b> " + "</br></br>"+
+                    "";
 
             organisme.bindPopup(ContenuePopup);
-        }       
+        }  
+        
+        
         L.control.layers(basemapControl, layerControl).addTo(map);
         
         L.control.search({
