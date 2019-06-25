@@ -15,6 +15,7 @@ $(document).ready(function(){
     });
     
     var $listederou = $('#listeorga');
+    var $listetype = $('#listetype');
     
     $listederou.append('<option value="">Selectionnez ...</option>');
         $.ajax(
@@ -22,21 +23,46 @@ $(document).ready(function(){
             url: './inc/fonction.php?action=deroullist',
             data: 'go', // on envoie $_GET['go']
             success: function(json) {
-                json = JSON.parse(json);
-                $.each(json, function(index, organisme)
-                {
-                    var action = "<option value='"+organisme.organisme_id+"'>"+ organisme['libelle_o'] +"</option>";
-                    $('#listeorga').append(action);
-                    
-                });
-                console.log(json);
-               
-        }
+                    json = JSON.parse(json);
+                    $.each(json, function(index, organisme)
+                    {
+                        var action = "<option value='"+organisme.organisme_id+"'>"+ organisme['libelle_o'] +"</option>";
+                        $('#listeorga').append(action);
+
+                    });
+                    console.log(json);
+
+            }
+
+        });
+        
+        $listetype.append('<option value="">Selectionnez ...</option>');
+        $.ajax(
+        {
+            url: './inc/fonction.php?action=deroullisttype',
+            data: 'types', // on envoie $_GET['go']
+            success: function(json) {
+                    json = JSON.parse(json);
+                    $.each(json, function(index, type)
+                    {
+                        var action = "<option value='"+type.type+"'>"+ type['type'] +"</option>";
+                        $('#listetype').append(action);
+
+                    });
+                    console.log(json);
+
+            }
 
         });
         
         
         // à la sélection de la localité un dans la liste
+        $listetype.on('change', function() {
+            var val = $(this).val(); // on récupère la valeur de la localité un
+            $('#type').val(val); 
+
+        });
+        
         $listederou.on('change', function() {
             var val = $(this).val(); // on récupère la valeur de la localité un
             $('#organisme_id').val(val);

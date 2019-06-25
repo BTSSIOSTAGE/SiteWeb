@@ -43,7 +43,10 @@
                   </div>
                   <div class="form-group">
                     <label for="name" class="control-label">Type (Ex : BTS):</label>
-                    <input type="text" class="form-control" id="type" name="type"/>
+                    <select class="select-orga" name="listetype" id="listetype"></select>
+                    <div class="" id="test" >
+                    </div>
+                    <input type="hidden" class="form-control" id="type" name="type"/>
                   </div>
                   <div class="form-group">
                     <label for="salary" class="control-label">Capacité d'accueil:</label>

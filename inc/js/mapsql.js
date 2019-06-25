@@ -149,11 +149,18 @@ $.post('./addpointmap.php',
         
         L.control.layers(basemapControl, layerControl).addTo(map);
         
-        L.control.search({
-            layer: Groupe,
-            initial: true,
-            propertyName: libelle_f
-
-        }).addTo(map);
+        function SearchInBDD(text, callResponse)//callback for 3rd party ajax requests
+	{
+		return $.ajax({
+			url: './inc/fonction.php?action=recherche',	// Action search dans le fonction.php
+			type: 'GET',
+			data: {q: text},
+			dataType: 'json',
+			success: function(json) {
+				callResponse(json);
+			}
+		});
+	}
+	map.addControl( new L.Control.Search({sourceData: SearchInBDD, text:'Color...', markerLocation: true}) );
         
    });

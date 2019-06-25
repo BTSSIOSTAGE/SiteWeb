@@ -12,7 +12,7 @@
           <li><a href="cmqnumerique.php">CMQ Numerique</a></li>
           <li><a href="#">CMQ Bâtiment</a>
             <ul>
-              <li><a href="#">Par métier</a></li>
+              <li><a href="cmqfamille.php">Par métier</a></li>
               <li><a href="cmqbatimentf.php">Par formation</a></li>
             </ul>
           </li>

@@ -1,7 +1,7 @@
 //-----------------------------------------Liste des variable--------------------------------------
 //________________VAR FICHIER GEOJSON _______________________________
 // Variable stockant l'url/source du fichier geojson
-var formations = "./inc/geo/cmqbatiment/formation.geojson";
+var formations = "./inc/geo/cmqbatiment/formationfam.geojson";
 
 
 //__________________________________________________________________   
@@ -27,22 +27,22 @@ var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 
 var Groupe = new L.markerClusterGroup().addTo(map);
 
-var gbacpro = L.featureGroup.subGroup(Groupe).addTo(map);
-var gbts = L.featureGroup.subGroup(Groupe).addTo(map);
-var gcap = L.featureGroup.subGroup(Groupe).addTo(map);
-var gbp = L.featureGroup.subGroup(Groupe).addTo(map);
-var gdivers = L.featureGroup.subGroup(Groupe).addTo(map);
+var gfamille1 = L.featureGroup.subGroup(Groupe).addTo(map);
+var gfamille2 = L.featureGroup.subGroup(Groupe).addTo(map);
+var gfamille3 = L.featureGroup.subGroup(Groupe).addTo(map);
+var gfamille4 = L.featureGroup.subGroup(Groupe).addTo(map);
+var gfamille5 = L.featureGroup.subGroup(Groupe).addTo(map);
 //__________________________________________________________________        
 
 
 
 
 //________________GROUPE DE LAYERS (BTS , CAP ...)__________________ 
-var lbacpro = L.layerGroup().addTo(map);
-var lbts = L.layerGroup().addTo(map);
-var lcap = L.layerGroup().addTo(map);
-var lbp = L.layerGroup().addTo(map);
-var ldivers = L.layerGroup().addTo(map);
+var lfamille1 = L.layerGroup().addTo(map);
+var lfamille2 = L.layerGroup().addTo(map);
+var lfamille3 = L.layerGroup().addTo(map);
+var lfamille4 = L.layerGroup().addTo(map);
+var lfamille5 = L.layerGroup().addTo(map);
 //__________________________________________________________________ 
 
 // Options du marker
@@ -59,11 +59,11 @@ var basemapControl = {
 };
 
 var layerControl = {
-  "Bac Pro": lbacpro, 
-  "Bp": lbp, 
-  "Cap": lcap, 
-  "Bts": lbts, 
-  "Divers": ldivers 
+  "Béton | Gros oeuvres | Travaux publics | Études géometres | Conduites d'engins": lfamille1, 
+  "Seconde oeuvre et aménagement carrelage | Peintre | Platre": lfamille4, 
+  "Métal | Alluminium | Chaudronerie": lfamille3, 
+  "Bois | Menusierie | Charpente | Couverture": lfamille2, 
+  "Electrécité | Plomberie | Climatisation domotique": lfamille5 
 };
 
 //-----------------------------------------Setup Map--------------------------------------
@@ -98,7 +98,6 @@ function forEachFeature(feature, marker)
 
 
 
-
 //----------------------------------------- Chargement des fichiers + placements des données --------------------------------------
 
 //_______________________________________________________BAC PRO________________________________________________
@@ -112,12 +111,12 @@ $.getJSON(formations, function(geojson)
         {
             return L.circleMarker(latlng, OptionsMarkers);
         }       ,
-        filter: function(feature, gbacpro) {   
-         return (feature.properties.formation  === "BACPRO" );
+        filter: function(feature, gfamille1) {   
+         return (feature.properties.famille  === 1 );
         }
     });
-    points.addTo(gbacpro);
-    lbacpro.addLayer(gbacpro);
+    points.addTo(gfamille1);
+    lfamille1.addLayer(gfamille1);
   
 });
 
@@ -133,12 +132,12 @@ $.getJSON(formations, function(geojson)
         {
             return L.circleMarker(latlng, OptionsMarkers);
         }       ,
-        filter: function(feature, gbacpro) {   
-         return (feature.properties.formation  === "BTS" );
+        filter: function(feature, gfamille1) {   
+         return (feature.properties.famille  === 2 );
         }
     });
-    points.addTo(gbts);
-    lbts.addLayer(gbts);
+    points.addTo(gfamille2);
+    lfamille2.addLayer(gfamille2);
   
 });
 
@@ -154,12 +153,12 @@ $.getJSON(formations, function(geojson)
         {
             return L.circleMarker(latlng, OptionsMarkers);
         }       ,
-        filter: function(feature, gbacpro) {   
-         return (feature.properties.formation  === "CAP" );
+        filter: function(feature, gfamille1) {   
+         return (feature.properties.famille  === 3 );
         }
     });
-    points.addTo(gcap);
-    lcap.addLayer(gcap);
+    points.addTo(gfamille3);
+    lfamille3.addLayer(gfamille3);
   
 });
 
@@ -175,12 +174,12 @@ $.getJSON(formations, function(geojson)
         {
             return L.circleMarker(latlng, OptionsMarkers);
         }       ,
-        filter: function(feature, gbacpro) {   
-         return (feature.properties.formation  === "BP" );
+        filter: function(feature, gfamille1) {   
+         return (feature.properties.famille  === 4 );
         }
     });
-    points.addTo(gbp);
-    lbp.addLayer(gbp);
+    points.addTo(gfamille4);
+    lfamille4.addLayer(gfamille4);
   
 });
 
@@ -196,12 +195,12 @@ $.getJSON(formations, function(geojson)
         {
             return L.circleMarker(latlng, OptionsMarkers);
         }       ,
-        filter: function(feature, gbacpro) {   
-         return (feature.properties.formation  === "DIVERS" );
+        filter: function(feature, gfamille1) {   
+         return (feature.properties.famille  === 5);
         }
     });
-    points.addTo(gdivers);
-    ldivers.addLayer(gdivers);
+    points.addTo(gfamille5);
+    lfamille5.addLayer(gfamille5);
   
 });
 
@@ -209,7 +208,7 @@ $.getJSON(formations, function(geojson)
 L.control.search({
     layer: Groupe,
     initial: false,
-    propertyName: 'name'
+    propertyName: "name"
        
 }).addTo(map);
 

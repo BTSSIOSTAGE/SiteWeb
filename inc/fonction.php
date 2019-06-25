@@ -41,6 +41,13 @@ switch($action) {
     case 'deroullist':
 	$dbconn->getDeroulList();
         break;
+    case 'deroullisttype':
+	$dbconn->getDeroulListType();
+        break;
+    case 'recherche':
+        $search = isset($params['q']) && $params['q'] !='' ? $params['q'] : 0;
+	$dbconn->getSearchResult($search);
+        break;
     default:
     return;
 }
@@ -196,11 +203,11 @@ class ConnectToDb {
               $resp['status'] = false;
               
               
-              $data['libelle_f'] = filter_input(INPUT_POST, "'libelle_f'");
+              $data['libelle_f'] = filter_input(INPUT_POST, 'libelle_f');
               $data['type'] = filter_input(INPUT_POST, 'type');
               $data['capacite'] = filter_input(INPUT_POST, 'capacite');
               $data['niv_requis'] = filter_input(INPUT_POST, 'niv_requis');
-              $data['modalite_spe_recrutement'] = filter_input(INPUT_POST, "'modalite_spe_recrutement'");
+              $data['modalite_spe_recrutement'] = filter_input(INPUT_POST, 'modalite_spe_recrutement');
               $data['organisme_id'] = filter_input(INPUT_POST, 'organisme_id');
 
               pg_insert($dbconn, 'formation_organisme' , $data) or die("error to insert employee data");
@@ -318,6 +325,47 @@ class ConnectToDb {
                 $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
                 $data = pg_fetch_all($queryRecords);
                 echo json_encode($data);
+
+            }
+        }
+        public function getDeroulListType(){          
+            if(isset($_GET['types'])) {   // requête qui récupère les localités un
+               
+                $dbconn =  $this->connect();
+                $queryoranisme = "SELECT DISTINCT type FROM formation_organisme ORDER BY type ASC";
+                
+                
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
+                $data = pg_fetch_all($queryRecords);
+                echo json_encode($data);
+
+            }
+        }
+        public function getSearchResult($search){  
+            
+            function searchInit($text)	//search initial text in titles
+            {
+                    $reg = "/^".$_GET['q']."/i";	//initial case insensitive searching
+                    return (bool)@preg_match($reg, $text['title']);
+            }
+            if(!isset($_GET['q']) or empty($_GET['q']))
+            {
+                die( json_encode(array('ok'=>0, 'errmsg'=>'Erreur lors de la recherche !') ) );
+            } else {
+                $searcharray = array();
+                $AllSearch = array();
+                $dbconn =  $this->connect();
+                $queryoranisme = "SELECT lat , lng , libelle_f ,libelleville FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse addr ON addr.organisme_id = o.organisme_id LEFT JOIN ville v ON v.adresse_id = addr.adresse_id ORDER BY libelle_f ASC";         
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
+                //$data = pg_fetch_all($queryRecords);
+                while ($row = pg_fetch_row($queryRecords)) {
+                    $searcharray["loc"] = [$row[0],$row[1]];
+                    $searcharray["title"] = $row[2];
+                    array_push($AllSearch, $searcharray);
+                }
+                $fdata = array_filter($AllSearch, 'searchInit');	//filter data
+                $fdata = array_values($fdata);	//reset $fdata indexs
+                echo json_encode($fdata);
 
             }
         }
