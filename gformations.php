@@ -14,6 +14,11 @@
         <script src="./inc/js/bootstrap.min.js"></script>      
         <?php 
             include ("./inc/navbar.php"); 
+            if(!isset($_SESSION['id'])){
+		// Redirection si pas connecté
+			header('Location: index.php');
+			exit;
+		}
            
         ?>
         <style> #map{width: 70%;height: 94vh;z-index:1;float:left;}</style>
