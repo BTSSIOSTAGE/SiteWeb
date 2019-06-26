@@ -4,7 +4,9 @@ html, body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
+map{
+    
+}
 
 nav {
     
@@ -114,7 +116,25 @@ nav ul:after { clear: both; }
   margin: 4px 2px;
   cursor: pointer;
 }
-
+.btnStyle {
+    cursor:pointer;
+    background-color: #4D90FE; 
+    border-radius: 15px;
+    background-image: -moz-linear-gradient(center top , #4D90FE, #4787ED); 
+    border: 1px solid #3079ED; 
+    color: #FFFFFF;
+    padding: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    width:28%
+}
+#refreshButton {
+  position: absolute;
+  bottom : 10px;
+  left: 30px;
+  padding: 4px;
+  z-index: 3200;
+}
 
 .button2 {background-color: #008CBA;} /* Blue */
 .button3 {background-color: #f44336;} /* Red */ 

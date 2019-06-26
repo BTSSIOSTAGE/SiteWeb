@@ -49,9 +49,6 @@ $.post('./addpointmap.php',
         // Options du marker
         var  OptionsMarkers = {
             'radius':15,
-            'opacity': .5,
-            'color': "blue",
-            'fillColor':  "blue",
             'fillOpacity': 0.4
         };
 
@@ -96,7 +93,7 @@ $.post('./addpointmap.php',
             
             var libelleville = data[i]['libelleville'];
             var modalitesperecrutement = data[i]['modalite_spe_recrutement'];
-            
+            OptionsMarkers.color = getColor(type);
             
             addOrganisme(lat,lng,type, libelle_o, rue1, rue2, cp , libelleville ,libelle_f,capacite,niv_requis,modalitesperecrutement);
                  
@@ -162,5 +159,60 @@ $.post('./addpointmap.php',
 		});
 	}
 	map.addControl( new L.Control.Search({sourceData: SearchInBDD, text:'Color...', markerLocation: true}) );
+        
+        showLegend = true;
+        function getColor(type) {
+            switch (type) {
+                case 'BTS':
+                    return  '#9932CC';
+                    break;
+                case 'BACPRO':
+                    return '#008000';
+                    break;
+                case 'BP':
+                    return '#991f00';
+                    break;
+                case 'CAP':
+                    return '#000099';
+                    break;
+                case 'DIVERS':
+                    return '#8c918b';
+                    break;
+                default:
+                    return '#8c918b';
+                }
+        }
+        
+        var legend = L.control({position: 'bottomleft'});
+        legend.onAdd = function(map){
+
+            var div = L.DomUtil.create('div','legend');
+            label = ['<strong>Légende</strong>'],
+            categories = ['BTS','BACPRO','BP','CAP','DIVERS'];
+            for (var i = 0; i < categories.length; i++) {
+                div.innerHTML +=
+                        label.push('<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+                        (categories[i] ? categories[i] : '+'));
+
+            }
+            div.innerHTML = label.join('<br>');
+            return div;
+        };
+        legend.addTo(map);  
+        
+        $( "#refreshButton" ).click(function() {
+            if(showLegend === true)
+            {
+                $('.legend').hide(); 
+                $('#refreshButton').html("Afficher"); 
+                showLegend = false; 
+            }else{
+                $('.legend').show();
+                $('#refreshButton').html("Masquer"); 
+                showLegend = true; 
+            }
+         }); 
+         
+        
         
    });
