@@ -61,7 +61,7 @@ class ConnectToDb {
 		$host = "172.19.40.43";
 		$username = "fabrice";
 		$mdp = "fabrice";
-		$db = "Stage";
+                $db = "FAB";
                 $port = "5432";
                 try{
                     $dbconn = pg_connect("host=$host dbname=$db user=$username
@@ -73,7 +73,7 @@ class ConnectToDb {
 		return $dbconn;
 	}
         
-	public function addOrganismes($lat, $lng, $name, $adr1, $adr2, $ville, $cp)
+	public function addOrganismes($lat, $lng, $name, $adr1, $adr2, $ville, $cp, $telephone, $email)
 	{
             // ORGANISME
             $dbconn =  $this->connect();
@@ -85,6 +85,24 @@ class ConnectToDb {
             
             $taboid = pg_fetch_array(pg_query("SELECT currval('organisme_organisme_id_seq') as taboidr"));
             $id_orgar = $taboid["taboidr"];
+            
+            
+            // Telephone
+            
+            $querytelephone = "INSERT INTO telephone (telephone,organisme_id) VALUES ('$telephone','$id_orgar');";
+            $resulttel = pg_query($dbconn, $querytelephone);
+            if  (!$resulttel) {
+                 echo "<script>console.debug( \"PHP DEBUG: $resulttel\" );</script>";
+            }
+            
+            // Email
+            
+            $queryemail = "INSERT INTO mail (mail,organisme_id) VALUES ('$email','$id_orgar');";
+            $resultemail = pg_query($dbconn, $queryemail);
+            if  (!$resultemail) {
+                 echo "<script>console.debug( \"PHP DEBUG: $resultemail\" );</script>";
+            }
+            
             
             // ADDRESSE
             $queryadresse = "INSERT INTO adresse (rue1,rue2,lat,lng,organisme_id) VALUES ('$adr1','$adr2','$lat','$lng','$id_orgar');";
@@ -221,21 +239,32 @@ class ConnectToDb {
         
         public function deleteOrganisme($id) {
             $dbconn =  $this->connect();
-            $sql = "Delete FROM organisme Where organisme_id='$id'";
-            $queryRecords = pg_query($dbconn, $sql) or die("error to fetch employees data");
-            if($queryRecords) {
-                    echo true;
-            } else {
-                    echo false;
+            // Sup tout les formations
+            $deleteformation = "DELETE FROM formation_organisme WHERE organisme_id = '$id'";
+            $delteforma = pg_query($dbconn, $deleteformation) or die('Impossible effacé forma ');   
+            // Organisme données à sup
+            $selectid = "SELECT o.organisme_id, adr.adresse_id,v.ville_id, cp.cp_id, em.mail_id , tel.telephone_id FROM organisme o RIGHT JOIN mail em ON o.organisme_id = em.organisme_id RIGHT JOIN telephone tel ON o.organisme_id = tel.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$id'";
+            $queryRecords = pg_query($dbconn, $selectid) or die('query error');          
+            $donneeid = array();       
+            while ($row = pg_fetch_row($queryRecords)) {
+                $donneeid["organisme_id"] = $row[0];
+                $donneeid["adresse_id"] = $row[1];
+                $donneeid["ville_id"] = $row[2];
+                $donneeid["cp_id"] = $row[3];
+                $donneeid["mail_id"] = $row[4];    
+                $donneeid["telephone_id"] = $row[5];
             }
+            
+            
+            
+
             pg_close($dbconn);
         }
         
         public function getOrganimeInfoId($idorganisme)
 	{
             $dbconn =  $this->connect();
-            $query = "SELECT o.organisme_id, o.libelle_o, adr.adresse_id,adr.rue1,adr.rue2,adr.lat,adr.lng,v.ville_id,v.libelleville,cp.cp_id, cp.libellecp FROM organisme o LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$idorganisme'";
-	
+            $query = "SELECT o.organisme_id, o.libelle_o, adr.adresse_id,adr.rue1,adr.rue2,adr.lat,adr.lng,v.ville_id,v.libelleville,cp.cp_id, cp.libellecp, em.mail,em.mail_id , tel.telephone,tel.telephone_id FROM organisme o RIGHT JOIN mail em ON o.organisme_id = em.organisme_id RIGHT JOIN telephone tel ON o.organisme_id = tel.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$idorganisme'";
 
             $queryRecords = pg_query($dbconn, $query) or die('query error');
 
@@ -256,6 +285,13 @@ class ConnectToDb {
                 $villeid = $data['ville_id'] = filter_input(INPUT_POST, 'ville_id');
                 
                 
+                $mail_id = $data['mail_id'] = filter_input(INPUT_POST, 'ville_id');
+                $tel_id = $data['tel_id'] = filter_input(INPUT_POST, 'tel_id');
+                
+                
+               
+                
+                
                 // données
 		$libelle_o = $data['libelle_o'] = filter_input(INPUT_POST, 'organisme_libelle');
 		$libelleville = $data['libelleville'] = filter_input(INPUT_POST, 'o_libelleville');
@@ -265,6 +301,9 @@ class ConnectToDb {
                 $rue2 = $data['rue2'] = filter_input(INPUT_POST, 'o_rue2');
                 $lat = $data['lat'] = filter_input(INPUT_POST, 'o_lat');
                 $lng = $data['lng'] = filter_input(INPUT_POST, 'o_lng');
+                
+                $tel = $data['telephone'] = filter_input(INPUT_POST, 'o_tel');
+                $email = $data['mail'] = filter_input(INPUT_POST, 'o_email');
 		
                
                 
@@ -272,6 +311,8 @@ class ConnectToDb {
                 $sql .="UPDATE ville SET libelleville = '$libelleville' WHERE ville_id = '$villeid';";
                 $sql .="UPDATE organisme SET libelle_o = '$libelle_o' WHERE organisme_id ='$organisme_id';";
                 $sql .="UPDATE adresse SET rue1 = '$rue1', rue2 = '$rue2', lat = '$lat' , lng = '$lng' WHERE adresse_id = '$adresse_id';";
+                $sql .="UPDATE mail SET mail = '$email' WHERE mail_id = '$mail_id';";
+                $sql .="UPDATE telephone SET telephone = '$tel' WHERE telephone_id = '$tel_id';";
 		
 		//$result = pg_update($this->conn, 'employee' , $data, array('id' => $data['id'])) or die("error to insert employee data");
                 $dbconn =  $this->connect();
@@ -345,8 +386,9 @@ class ConnectToDb {
             
             function searchInit($text)	//search initial text in titles
             {
-                    $reg = "/^".$_GET['q']."/i";	//initial case insensitive searching
-                    return (bool)@preg_match($reg, $text['title']);
+                    //$reg = '/'.$_GET['q'].'/';	//initial case insensitive searching
+                     //$reg = '/''/';	//initial case insensitive searching
+                    return preg_match('/'.$_GET['q'].'/', $text['title']);
             }
             if(!isset($_GET['q']) or empty($_GET['q']))
             {
@@ -355,7 +397,7 @@ class ConnectToDb {
                 $searcharray = array();
                 $AllSearch = array();
                 $dbconn =  $this->connect();
-                $queryoranisme = "SELECT lat , lng , libelle_f ,libelleville FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse addr ON addr.organisme_id = o.organisme_id LEFT JOIN ville v ON v.adresse_id = addr.adresse_id ORDER BY libelle_f ASC";         
+                $queryoranisme = "SELECT lat , lng , libelle_f FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse addr ON addr.organisme_id = o.organisme_id LEFT JOIN ville v ON v.adresse_id = addr.adresse_id";         
                 $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
                 //$data = pg_fetch_all($queryRecords);
                 while ($row = pg_fetch_row($queryRecords)) {

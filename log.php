@@ -37,7 +37,7 @@
                                                                 $hashedmdp = md5($pass_app);
                                                                 
                                                                 
-								$sql = "SELECT compte_id , email ,mdp , nom FROM compte WHERE email = '$login_app' AND mdp = '$hashedmdp'";
+								$sql = "SELECT compte_id , email ,mdp , nom, activate_status , droittype FROM compte WHERE email = '$login_app' AND mdp = '$hashedmdp'";
                                                                 $result = pg_query($conn, $sql) or die('query error');
                                                                 
 								//$row = pg_fetch_all($result);
@@ -52,10 +52,18 @@
                                                                 
 									if($count > 0)  
 									{  
-										 $_SESSION["id"] = $row["compte_id"];
-										 $_SESSION["email"] = $row["email"];
-										 $_SESSION["nom"] = $row["nom"];  
-										 header("location:./index.php");  
+                                                                            if($row["activate_status"] == 0){
+                                                                                header("location:./log.php?pages=noactivate"); 
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                $_SESSION["id"] = $row["compte_id"];
+										$_SESSION["email"] = $row["email"];
+										$_SESSION["nom"] = $row["nom"];  
+                                                                                $_SESSION["droittype"] = $row["droittype"]; 
+										header("location:./index.php");  
+                                                                            }
+										
 									}  
 									else  
 									{  
@@ -69,6 +77,8 @@
 						}
 				}else if($_GET['pages'] == 'error'){
 					$log_msg = 'Erreur de connexion ! Vérifiés vos identifiants !';
+				}else if($_GET['pages'] == 'noactivate'){
+					$log_msg = 'Erreur de connexion ! Compte non activé !';
 				}
 			}
 	?>

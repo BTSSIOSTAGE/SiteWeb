@@ -60,6 +60,9 @@
                         <input type="hidden" value="1" name="cp_id" id="cp_id">
                         <input type="hidden" value="1" name="ville_id" id="ville_id">
                         <input type="hidden" value="1" name="adresse_id" id="adresse_id">
+                        
+                        <input type="hidden" value="1" name="tel_id" id="tel_id">
+                        <input type="hidden" value="1" name="email_id" id="email_id">
                         <!-------------------- -->
                       <div class="form-group">
                         <label for="nom" class="control-label">Nom de l'organisme :</label>
@@ -75,22 +78,35 @@
                       </div>
                         
                         <div class="form-group">
-                        <label for="cp" class="control-label">Rue 1:</label>
+                        <label for="rue1" class="control-label">Rue 1:</label>
                         <input type="text" class="form-control" id="o_rue1" name="o_rue1" />
                       </div>
                         
                         <div class="form-group">
-                        <label for="cp" class="control-label">Rue 2:</label>
+                        <label for="rue2" class="control-label">Rue 2:</label>
                         <input type="text" class="form-control" id="o_rue2" name="o_rue2" />
                       </div>
                         
+                        
                         <div class="form-group">
-                        <label for="cp" class="control-label">Longitude :</label>
+                        <label for="email" class="control-label">Email :</label>
+                        <input type="text" class="form-control" id="o_email" name="o_email" />
+                      </div>
+                        
+                      <div class="form-group">
+                        <label for="tel" class="control-label">Téléphone :</label>
+                        <input type="text" class="form-control" id="o_tel" name="o_tel" />
+                      </div>
+                        
+                      <div class="form-group">
+                        <label for="lon" class="control-label">Longitude :</label>
                         <input type="text" class="form-control" id="o_lng" name="o_lng" />
                       </div>
                         
+                      
+                        
                         <div class="form-group">
-                        <label for="cp" class="control-label">Latitude:</label>
+                        <label for="lat" class="control-label">Latitude:</label>
                         <input type="text" class="form-control" id="o_lat" name="o_lat" />
                       </div>
 

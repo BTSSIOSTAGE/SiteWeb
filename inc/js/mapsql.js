@@ -158,7 +158,7 @@ $.post('./addpointmap.php',
 			}
 		});
 	}
-	map.addControl( new L.Control.Search({sourceData: SearchInBDD, text:'Color...', markerLocation: true}) );
+	map.addControl( new L.Control.Search({sourceData: SearchInBDD, text:'Color...', markerLocation: true,initial:false,casesensitive: false,}) );
         
         showLegend = true;
         function getColor(type) {

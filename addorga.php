@@ -30,6 +30,10 @@
                     <input type="text" id="lonInput"> <br>
                     <b>Nom de l'organisme</b>: <br>
                     <input type="text" id="nomorganisme"> <br>
+                    <b>Téléphone</b>: <br>
+                    <input type="text" id="numerotel"> <br>
+                    <b>Email de l'organisme</b>: <br>
+                    <input type="text" id="emailorganisme"> <br>
                     <b>Adresse 1</b>: <br>
                     <input type="text" id="adresse1"> <br>
                     <b>Adresse 2</b>: <br>

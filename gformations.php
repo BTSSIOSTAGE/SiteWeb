@@ -51,7 +51,7 @@
                     <select class="select-orga" name="listetype" id="listetype"></select>
                     <div class="" id="test" >
                     </div>
-                    <input type="hidden" class="form-control" id="type" name="type"/>
+                    <input type="text" class="form-control" id="type" name="type"/>
                   </div>
                   <div class="form-group">
                     <label for="salary" class="control-label">Capacité d'accueil:</label>

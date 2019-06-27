@@ -7,7 +7,21 @@
 <nav>
     <ul class="main-navigation">
       <li><a href="index.php">Accueil</a></li>
-      <li><a href="mapsql.php">Carte</a>
+      <li><a href="#">Cartes</a>
+        <ul>
+          <li><a href="cmqnumerique.php">CMQ Numerique</a></li>
+          <li><a href="#">CMQ Bâtiment</a>
+            <ul>
+              <li><a href="cmqfamille.php">Par métier</a></li>
+              <li><a href="cmqbatimentf.php">Par formation</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Carte SQL Test</a>
+            <ul>
+              <li><a href="mapsql.php">SQL</a></li>
+            </ul>
+          </li>
+        </ul>
       </li>
       <?php
 	if(isset($_SESSION['id']))

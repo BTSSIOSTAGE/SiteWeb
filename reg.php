@@ -38,15 +38,15 @@
 							} else {
 								try{
 									// Vérification si email existe ou pass
-									$sql = "SELECT COUNT(nom) AS nom FROM compte WHERE nom = '$login_app'";
+									$sql = "SELECT COUNT(email) AS email FROM compte WHERE email = '$login_app'";
                                                                         $result = pg_query($conn, $sql) or die('query error');
-
-                                                                        $row = pg_fetch_row($result);
-                                                                        
-                                                                        $row = json_encode($row, JSON_UNESCAPED_UNICODE);;
-							
-									if($row > 0){
-										header("location:./reg?pages=error_reg"); 
+                                      
+                                                                        $nbrcompte = array();
+                                                                        while ($row = pg_fetch_row($result)) {
+                                                                            $nbrcompte["email"] = $row[0];
+                                                                        }                                                                                               
+									if($nbrcompte["email"] > 0){
+										header("location:./reg.php?pages=error_reg"); 
 									}
 									else{
 										// Création du compte

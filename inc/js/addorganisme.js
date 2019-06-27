@@ -22,7 +22,7 @@ var marker = L.marker([0, 0]).addTo(map);
 
 
 
-var drawnItems = new L.geoJson().addTo(map);
+/*var drawnItems = new L.geoJson().addTo(map);
     map.on(L.Draw.Event.CREATED, function (event) {
     var layer = event.layer;
     drawnItems.addLayer(layer);
@@ -43,7 +43,7 @@ new L.Control.Draw({
         rectangle: false,
         circlemarker: false
     }  
-}).addTo(map);
+}).addTo(map);*/
 
 map.on('click', function(e) 
 {
@@ -60,6 +60,8 @@ map.on('click', function(e)
     document.getElementById('adresse2').value = '';
     document.getElementById('ville').value = '';
     document.getElementById('cp').value = '';
+    document.getElementById('emailorganisme').value = '';
+    document.getElementById('numerotel').value = '';
     
     document.getElementById('status').innerHTML = '';
     
@@ -77,6 +79,9 @@ map.on('click', function(e)
         var adresse2 = document.getElementById('adresse2').value;
         var ville = document.getElementById('ville').value;
         var cp = document.getElementById('cp').value;
+        
+        var email = document.getElementById('emailorganisme').value;
+        var numtel = document.getElementById('numerotel').value;
         $.post('./addorg.php',
         {
             plat: latInput,
@@ -85,18 +90,23 @@ map.on('click', function(e)
             paddr1: adresse1,
             paddr2: adresse2,
             pville: ville,
-            pcp : cp
+            pcp : cp,
+            pemail : email,
+            pnumtel : numtel
 
         },
         function(data) 
         {
-            
+                document.getElementById('latInput').value = '';
+                document.getElementById('lonInput').value = '';
                 document.getElementById('nomorganisme').value = '';
                 document.getElementById('adresse1').value = '';
                 document.getElementById('adresse2').value = '';
                 document.getElementById('ville').value = '';
                 document.getElementById('cp').value = '';
                 document.getElementById('status').innerHTML = 'Organisme enregistré avec succés! (Approbation demandé)';
+                document.getElementById('emailorganisme').value = '';
+                document.getElementById('numerotel').value = '';
    
          
         }

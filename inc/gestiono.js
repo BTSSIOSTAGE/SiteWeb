@@ -28,6 +28,8 @@ $(document).ready(function()
                     $('#adresse_id').val(data['0']['adresse_id']);
                     $('#cp_id').val(data['0']['cp_id']);
                     $('#ville_id').val(data['0']['ville_id']);
+                    $('#tel_id').val(data['0']['telephone_id']);
+                    $('#email_id').val(data['0']['email_id']);
                     // Données
                     $('#organisme_libelle').val(data['0']['libelle_o']);
                     $('#o_libelleville').val(data['0']['libelleville']); 
@@ -37,6 +39,9 @@ $(document).ready(function()
                     $('#o_rue2').val(data['0']['rue2']);
                     $('#o_lat').val(data['0']['lat']);
                     $('#o_lng').val(data['0']['lng']);
+                    
+                    $('#o_tel').val(data['0']['telephone']);
+                    $('#o_email').val(data['0']['mail']);
            
                     
                     
