@@ -58,10 +58,10 @@ class ConnectToDb {
         protected $listOrganisme = array();
         public function connect()
 	{
-		$host = "172.19.40.43";
-		$username = "fabrice";
-		$mdp = "fabrice";
-                $db = "FAB";
+		$host = "localhost";
+		$username = "postgres";
+		$mdp = "root";
+                $db = "Stage";
                 $port = "5432";
                 try{
                     $dbconn = pg_connect("host=$host dbname=$db user=$username
@@ -239,22 +239,51 @@ class ConnectToDb {
         
         public function deleteOrganisme($id) {
             $dbconn =  $this->connect();
-            // Sup tout les formations
+            // Sup tout les formations liés
             $deleteformation = "DELETE FROM formation_organisme WHERE organisme_id = '$id'";
-            $delteforma = pg_query($dbconn, $deleteformation) or die('Impossible effacé forma ');   
-            // Organisme données à sup
-            $selectid = "SELECT o.organisme_id, adr.adresse_id,v.ville_id, cp.cp_id, em.mail_id , tel.telephone_id FROM organisme o RIGHT JOIN mail em ON o.organisme_id = em.organisme_id RIGHT JOIN telephone tel ON o.organisme_id = tel.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$id'";
+            pg_query($dbconn, $deleteformation) or die('Impossible effacé forma ');  
+            // Sup tout les emails liés
+            $deleteemail = "DELETE FROM mail WHERE organisme_id = '$id'";
+            pg_query($dbconn, $deleteemail) or die('Impossible effacé email '); 
+            // Sup tout les tel liés
+            $deletetel = "DELETE FROM telephone WHERE organisme_id = '$id'";
+            pg_query($dbconn, $deletetel) or die('Impossible effacé tel ');   
+            // Recup donnée des id à sup
+            $selectid = "SELECT o.organisme_id, adr.adresse_id,v.ville_id, cp.cp_id FROM organisme o LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$id'";
             $queryRecords = pg_query($dbconn, $selectid) or die('query error');          
-            $donneeid = array();       
+            $donneeid = array();
             while ($row = pg_fetch_row($queryRecords)) {
                 $donneeid["organisme_id"] = $row[0];
                 $donneeid["adresse_id"] = $row[1];
                 $donneeid["ville_id"] = $row[2];
                 $donneeid["cp_id"] = $row[3];
-                $donneeid["mail_id"] = $row[4];    
-                $donneeid["telephone_id"] = $row[5];
             }
+            echo $donneeid["ville_id"];
+            // Sup cpde ville
+            $villeid = $donneeid["ville_id"];
+            $deletecpdeville = "DELETE FROM cpdeville WHERE ville_id = '$villeid'";
+            pg_query($dbconn, $deletecpdeville) or die('Impossible effacé cpdeville ');
             
+            // Sup cp
+            $cpid = $donneeid["cp_id"];
+            $deletecp= "DELETE FROM codepostal WHERE cp_id = '$cpid'";
+            pg_query($dbconn, $deletecp) or die('Impossible effacé cp '); 
+            
+             // Sup ville
+            $deleteville= "DELETE FROM ville WHERE ville_id = '$villeid'";
+            pg_query($dbconn, $deleteville) or die('Impossible effacé ville '); 
+            
+             // Sup adresse
+            $adresse_id = $donneeid["adresse_id"];
+            $deleteadresse= "DELETE FROM adresse WHERE adresse_id = '$adresse_id'";
+            pg_query($dbconn, $deleteadresse) or die('Impossible effacé adresse '); 
+            
+            // Sup Orga
+            
+            $orga_id = $donneeid["organisme_id"];
+            $deleteorga = "DELETE FROM organisme WHERE organisme_id = '$orga_id'";
+            pg_query($dbconn, $deleteorga) or die('Impossible effacé orga '); 
+           
             
             
 
