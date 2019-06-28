@@ -426,18 +426,19 @@ class ConnectToDb {
                 $searcharray = array();
                 $AllSearch = array();
                 $dbconn =  $this->connect();
-                $queryoranisme = "SELECT lat , lng , libelle_f FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse addr ON addr.organisme_id = o.organisme_id LEFT JOIN ville v ON v.adresse_id = addr.adresse_id";         
-                $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
+                $queryoranisme = "SELECT lat , lng , libelle_f ,libelleville libelleville FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse addr ON addr.organisme_id = o.organisme_id LEFT JOIN ville v ON v.adresse_id = addr.adresse_id";         
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("");
                 //$data = pg_fetch_all($queryRecords);
                 while ($row = pg_fetch_row($queryRecords)) {
-                    $searcharray["loc"] = [$row[0],$row[1]];
-                    $searcharray["title"] = $row[2];
+                    $searcharray["loc"] = [$row[0],$row[1]];                
+
+                    $searcharray["title"] = $row[2]." <b>".$row[3]."</b>"; 
+                    //echo $searcharray["title"];
                     array_push($AllSearch, $searcharray);
                 }
                 $fdata = array_filter($AllSearch, 'searchInit');	//filter data
                 $fdata = array_values($fdata);	//reset $fdata indexs
                 echo json_encode($fdata);
-
             }
         }
 }
