@@ -175,9 +175,6 @@ $.post('./addpointmap.php',
                 case 'CAP':
                     return '#000099';
                     break;
-                case 'DIVERS':
-                    return '#8c918b';
-                    break;
                 default:
                     return '#8c918b';
                 }

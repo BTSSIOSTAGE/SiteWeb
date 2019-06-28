@@ -16,13 +16,20 @@
 		      <li><a href="#">Organismes</a>
                          <ul>
                             <li><a href="addorga.php">Ajouter</a></li>
-                            <li><a href="gorganisme.php">Gérer</a>
+                            <li><a href="gorganisme.php">Gérer</a></li>
                          </ul>
-                        </li>
+                      </li>
                       <li><a href="gformations.php">Formations</a>
                       </li>
                       <li style="float:right"><a href="./logout.php"><span class="glyphicon glyphicon-log-in"></span> Deconnexion</a></li>
                       <li style="float:right"><a href="./compte.php"><span class="glyphicon glyphicon-user"></span> Mon Compte ( '.$_SESSION["email"].' )</a></li>';
+           if($_SESSION["droittype"] == 3){
+               echo '<li style="float:right"><a href="./admin.php"><span class="glyphicon glyphicon-log-in"></span> Admisnistration</a><ul>
+                            <li><a href="./admin/compte.php">Comptes</a></li>
+                            <li><a href="gorganisme.php">Organismes</a></li>
+                            <li><a href="gorganisme.php">Formations</a></li>
+                         </ul></li>';
+           }
 					
 	}else
 					{

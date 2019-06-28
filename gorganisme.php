@@ -70,32 +70,32 @@
                       </div>
                       <div class="form-group">
                         <label for="ville" class="control-label">Ville :</label>
-                        <input type="text" class="form-control" id="o_libelleville" name="o_libelleville" />
+                        <input type="text" class="form-control" id="o_libelleville" name="o_libelleville" value="Non renseigné" />
                       </div>
                       <div class="form-group">
                         <label for="cp" class="control-label">Code Postal:</label>
-                        <input type="text" class="form-control" id="o_libellecp" name="o_libellecp" />
+                        <input type="text" class="form-control" id="o_libellecp" name="o_libellecp" value="Non renseigné" />
                       </div>
                         
                         <div class="form-group">
                         <label for="rue1" class="control-label">Rue 1:</label>
-                        <input type="text" class="form-control" id="o_rue1" name="o_rue1" />
+                        <input type="text" class="form-control" id="o_rue1" name="o_rue1" value="Non renseigné" />
                       </div>
                         
                         <div class="form-group">
                         <label for="rue2" class="control-label">Rue 2:</label>
-                        <input type="text" class="form-control" id="o_rue2" name="o_rue2" />
+                        <input type="text" class="form-control" id="o_rue2" name="o_rue2" value="Non renseigné" />
                       </div>
                         
                         
                         <div class="form-group">
                         <label for="email" class="control-label">Email :</label>
-                        <input type="text" class="form-control" id="o_email" name="o_email" />
+                        <input type="text" class="form-control" id="o_email" name="o_email" value="Non renseigné" />
                       </div>
                         
                       <div class="form-group">
                         <label for="tel" class="control-label">Téléphone :</label>
-                        <input type="text" class="form-control" id="o_tel" name="o_tel" />
+                        <input type="text" class="form-control" id="o_tel" name="o_tel" value="Non renseigné" />
                       </div>
                         
                       <div class="form-group">

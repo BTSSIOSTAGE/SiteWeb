@@ -58,9 +58,9 @@ class ConnectToDb {
         protected $listOrganisme = array();
         public function connect()
 	{
-		$host = "localhost";
-		$username = "postgres";
-		$mdp = "root";
+		$host = "172.19.40.43";
+		$username = "fabrice";
+		$mdp = "fabrice";
                 $db = "Stage";
                 $port = "5432";
                 try{
@@ -340,8 +340,8 @@ class ConnectToDb {
                 $sql .="UPDATE ville SET libelleville = '$libelleville' WHERE ville_id = '$villeid';";
                 $sql .="UPDATE organisme SET libelle_o = '$libelle_o' WHERE organisme_id ='$organisme_id';";
                 $sql .="UPDATE adresse SET rue1 = '$rue1', rue2 = '$rue2', lat = '$lat' , lng = '$lng' WHERE adresse_id = '$adresse_id';";
-                $sql .="UPDATE mail SET mail = '$email' WHERE mail_id = '$mail_id';";
-                $sql .="UPDATE telephone SET telephone = '$tel' WHERE telephone_id = '$tel_id';";
+                $sql .="UPDATE mail SET mail = '$email' WHERE organisme_id = '$organisme_id';";
+                $sql .="UPDATE telephone SET telephone = '$tel' WHERE organisme_id = '$organisme_id';";
 		
 		//$result = pg_update($this->conn, 'employee' , $data, array('id' => $data['id'])) or die("error to insert employee data");
                 $dbconn =  $this->connect();
