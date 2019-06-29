@@ -16,8 +16,7 @@
     </head>
     <body>
         <div id='map'> <script src="./inc/js/mapsql.js"></script>
-             <button type="button" id="refreshButton" class="bouttonform button5" >Masquer</button>
+             <button type="button" id="legendButton" class="bouttonform button5" >Masquer</button>
         </div>
-       	<!-- JS Map -->
     </body>
 </html>

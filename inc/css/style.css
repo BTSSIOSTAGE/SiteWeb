@@ -128,7 +128,7 @@ nav ul:after { clear: both; }
     margin-bottom: 4px;
     width:28%
 }
-#refreshButton {
+#legendButton {
   position: absolute;
   bottom : 10px;
   left: 30px;

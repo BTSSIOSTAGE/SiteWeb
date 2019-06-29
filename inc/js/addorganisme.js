@@ -18,32 +18,7 @@ map.setMaxBounds([
 ]); 
 
 
-var marker = L.marker([0, 0]).addTo(map);
-
-
-
-/*var drawnItems = new L.geoJson().addTo(map);
-    map.on(L.Draw.Event.CREATED, function (event) {
-    var layer = event.layer;
-    drawnItems.addLayer(layer);
-    console.log(event.layer._latlng.lat);
-});
-        
-L.EditToolbar.Delete.include({
-    removeAllLayers: false
-});
-        
-new L.Control.Draw({
-    edit: {
-        featureGroup: drawnItems
-    },
-    draw: 
-    {
-        polygon: false,
-        rectangle: false,
-        circlemarker: false
-    }  
-}).addTo(map);*/
+var marker = L.marker([0, 0]).addTo(map); // Ajout d'un marker
 
 map.on('click', function(e) 
 {
@@ -68,7 +43,7 @@ map.on('click', function(e)
     document.getElementById('btnSave').onclick = AddDbOrganisme;
    
     
-    function AddDbOrganisme() 
+    function AddDbOrganisme() // Renvoie les données
     {
 
         var latInput = document.getElementById('latInput').value;
@@ -95,7 +70,7 @@ map.on('click', function(e)
             pnumtel : numtel
 
         },
-        function(data) 
+        function(data) // Insertion ok
         {
                 document.getElementById('latInput').value = '';
                 document.getElementById('lonInput').value = '';

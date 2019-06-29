@@ -55,7 +55,7 @@ var  OptionsMarkers = {
 };
 
 var basemapControl = {
-  //"My Basemap": osm// an option to select a basemap (makes more sense if you have multiple basemaps)
+  // Rajouté ici les diff* fond de carte
 };
 
 var layerControl = {

@@ -158,7 +158,7 @@ class ConnectToDb {
         public function get_formations() {
             $dbconn =  $this->connect();
             $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id , organisme.libelle_o FROM formation_organisme f LEFT JOIN organisme ON organisme.organisme_id = f.organisme_id";
-                $queryRecords = pg_query($dbconn, $sql) or die("error to fetch employees data");
+                $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des formations");
                 $data = pg_fetch_all($queryRecords);
                 echo json_encode($data);
           }
@@ -166,7 +166,7 @@ class ConnectToDb {
             
                 $dbconn =  $this->connect();
 		$sql = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp FROM organisme o LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
-		$queryRecords = pg_query($dbconn, $sql) or die("error to fetch employees data");
+		$queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des organismes");
                 
 		$listOrganisme = pg_fetch_all($queryRecords);
                 echo json_encode($listOrganisme);
@@ -177,7 +177,7 @@ class ConnectToDb {
         public function deleteFormation($id) {
             $dbconn =  $this->connect();
             $sql = "Delete FROM formation_organisme Where formation_id='$id'";
-            $queryRecords = pg_query($dbconn, $sql) or die("error to fetch employees data");
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de supprimé la formation");
             if($queryRecords) {
                     echo true;
             } else {
@@ -201,8 +201,7 @@ class ConnectToDb {
 		$forma_id = $data['formation_id'] = $_POST["formation_id"];
 		
                 $sql = "UPDATE formation_organisme SET libelle_f = '$libelle_f', type = '$type' , capacite = '$capacite' , niv_requis ='$niv_requis' , modalite_spe_recrutement = '$modalite_spe_recrutement' , organisme_id = '$organisme_id' WHERE formation_id = '$forma_id'";
-		pg_query($dbconn, $sql) or die("error to fetch employees data");
-		
+		pg_query($dbconn, $sql) or die("Impossible de mettre à jour la formation");
         $resp['status'] = true;
         $resp['Record'] = $data;
         echo json_encode($resp);  // send data as json format*/
@@ -211,7 +210,7 @@ class ConnectToDb {
         public function getFormation($id) {
             $dbconn =  $this->connect();
             $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id FROM formation_organisme f WHERE f.formation_id = '$id'";
-              $queryRecords = pg_query($dbconn, $sql) or die("error to fetch employees data");
+              $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir les informations de la formation");
               $data = pg_fetch_object($queryRecords);
               echo json_encode($data);
         }
@@ -228,7 +227,7 @@ class ConnectToDb {
               $data['modalite_spe_recrutement'] = filter_input(INPUT_POST, 'modalite_spe_recrutement');
               $data['organisme_id'] = filter_input(INPUT_POST, 'organisme_id');
 
-              pg_insert($dbconn, 'formation_organisme' , $data) or die("error to insert employee data");
+              pg_insert($dbconn, 'formation_organisme' , $data) or die("Impossible d'inserer une nouvelle formation");
 
 
               $resp['status'] = true;
@@ -295,7 +294,7 @@ class ConnectToDb {
             $dbconn =  $this->connect();
             $query = "SELECT o.organisme_id, o.libelle_o, adr.adresse_id,adr.rue1,adr.rue2,adr.lat,adr.lng,v.ville_id,v.libelleville,cp.cp_id, cp.libellecp, em.mail,em.mail_id , tel.telephone,tel.telephone_id FROM organisme o RIGHT JOIN mail em ON o.organisme_id = em.organisme_id RIGHT JOIN telephone tel ON o.organisme_id = tel.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$idorganisme'";
 
-            $queryRecords = pg_query($dbconn, $query) or die('query error');
+            $queryRecords = pg_query($dbconn, $query) or die("Impossible d'avoir les informations de cette organisme");
 
             $listOrganisme = pg_fetch_all($queryRecords);
             pg_close($dbconn);
@@ -314,8 +313,6 @@ class ConnectToDb {
                 $villeid = $data['ville_id'] = filter_input(INPUT_POST, 'ville_id');
                 
                 
-                $mail_id = $data['mail_id'] = filter_input(INPUT_POST, 'ville_id');
-                $tel_id = $data['tel_id'] = filter_input(INPUT_POST, 'tel_id');
                 
                 
                
@@ -347,7 +344,7 @@ class ConnectToDb {
                 $dbconn =  $this->connect();
                 
                 
-		pg_query($dbconn, $sql) or die("error to fetch employees data");
+		pg_query($dbconn, $sql) or die("Impossible d'effecuté la mise à jour de l'organisme");
 
                 pg_close($dbconn);
                 $resp['status'] = true;
@@ -360,7 +357,7 @@ class ConnectToDb {
             $dbconn =  $this->connect();
             $query = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp , adr.rue1 , adr.rue2 , adr.lat , adr.lng, fo.libelle_f , fo.capacite, fo.niv_requis,fo.type,fo.modalite_spe_recrutement FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
 
-            $result = pg_query($dbconn, $query) or die('query error');
+            $result = pg_query($dbconn, $query) or die("Impossible d'avoir la liste des formations");
 
             $city = array();
 
@@ -386,7 +383,7 @@ class ConnectToDb {
             return json_encode($citiesArray, JSON_UNESCAPED_UNICODE);
 	}
         public function getDeroulList(){          
-            if(isset($_GET['go'])) {   // requête qui récupère les localités un
+            if(isset($_GET['go'])) {  
                
                 $dbconn =  $this->connect();
                 $queryoranisme = "SELECT * FROM organisme ORDER BY libelle_o ASC";
@@ -405,7 +402,7 @@ class ConnectToDb {
                 $queryoranisme = "SELECT DISTINCT type FROM formation_organisme ORDER BY type ASC";
                 
                 
-                $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("Impossible d'avoir la liste des types formations");
                 $data = pg_fetch_all($queryRecords);
                 echo json_encode($data);
 
@@ -427,7 +424,7 @@ class ConnectToDb {
                 $AllSearch = array();
                 $dbconn =  $this->connect();
                 $queryoranisme = "SELECT lat , lng , libelle_f ,libelleville libelleville FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse addr ON addr.organisme_id = o.organisme_id LEFT JOIN ville v ON v.adresse_id = addr.adresse_id";         
-                $queryRecords = pg_query($dbconn, $queryoranisme) or die("");
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("Impossible d'effectué la recherche");
                 //$data = pg_fetch_all($queryRecords);
                 while ($row = pg_fetch_row($queryRecords)) {
                     $searcharray["loc"] = [$row[0],$row[1]];                

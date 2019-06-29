@@ -3,12 +3,6 @@
 // Variable stockant l'url/source du fichier geojson
 var formations = "./inc/geo/cmqbatiment/formation.geojson";
 
-
-//__________________________________________________________________   
-
-
-
-
 //________________VAR MAP _________________________________________________________________________________
 // Variable de la map
 var map = L.map('map', 

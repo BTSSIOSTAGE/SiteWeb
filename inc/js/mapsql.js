@@ -2,9 +2,9 @@
 $.post('./addpointmap.php',
     function(data) {
         if (data === 'connection error') {
-            console.log('Error connecting to the database!');
+            console.log('Erreur de connexion à la base de donnée!');
         } else if (data === 'query error') {
-            console.log('Error querying the database!');
+            console.log("Une erreur c'est produite lors de l'execution de la requêtes !");
         } 
          
     }
@@ -52,8 +52,8 @@ $.post('./addpointmap.php',
             'fillOpacity': 0.4
         };
 
-        var basemapControl = {
-          //"My Basemap": osm// an option to select a basemap (makes more sense if you have multiple basemaps)
+        var basemapControl = { // Si on souhaite rajouté diff fond de map
+          
         };
 
         var layerControl = {
@@ -158,10 +158,10 @@ $.post('./addpointmap.php',
 			}
 		});
 	}
-	map.addControl( new L.Control.Search({sourceData: SearchInBDD, text:'Color...', markerLocation: true,initial:false,casesensitive: false,}) );
+	map.addControl( new L.Control.Search({sourceData: SearchInBDD, text:'Color...', markerLocation: true,initial:false,casesensitive: false}) );
         
         showLegend = true;
-        function getColor(type) {
+        function getColor(type) {   // Recup couleur du marker en fonction du type de formation
             switch (type) {
                 case 'BTS':
                     return  '#9932CC';
@@ -175,7 +175,7 @@ $.post('./addpointmap.php',
                 case 'CAP':
                     return '#000099';
                     break;
-                default:
+                default: // Divers
                     return '#8c918b';
                 }
         }
@@ -197,15 +197,15 @@ $.post('./addpointmap.php',
         };
         legend.addTo(map);  
         
-        $( "#refreshButton" ).click(function() {
+        $( "#legendButton" ).click(function() {
             if(showLegend === true)
             {
                 $('.legend').hide(); 
-                $('#refreshButton').html("Afficher"); 
+                $('#legendButton').html("Afficher"); 
                 showLegend = false; 
             }else{
                 $('.legend').show();
-                $('#refreshButton').html("Masquer"); 
+                $('#legendButton').html("Masquer"); 
                 showLegend = true; 
             }
          }); 
