@@ -58,14 +58,14 @@ class ConnectToDb {
         protected $listOrganisme = array();
         public function connect()
 	{
-		$host = "localhost";
-		$username = "postgres";
-		$mdp = "root";
+		$host = "172.19.40.43";
+		$username = "fabrice";
+		$mdp = "fabrice";
                 $db = "Stage";
                 $port = "5432";
                 try{
                     $dbconn = pg_connect("host=$host dbname=$db user=$username
-                    password=$mdp port=$port") or die('Impossible de vous connectez à la base de donnée');    
+                    password=$mdp port=$port") or die('connection error');    
                 } catch (Exception $ex) {
 
                 }
@@ -209,11 +209,10 @@ class ConnectToDb {
 	}
         public function getFormation($id) {
             $dbconn =  $this->connect();
-            $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id FROM formation_organisme f WHERE f.formation_id = $1";
-            $result = pg_prepare($dbconn, "get_formation",$sql);  
-            $result = pg_execute($dbconn, "get_formation", array($id)) or die("Impossible d'avoir les informations de la formation");
-            $data = pg_fetch_object($result);
-            echo json_encode($data);
+            $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id FROM formation_organisme f WHERE f.formation_id = '$id'";
+              $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir les informations de la formation");
+              $data = pg_fetch_object($queryRecords);
+              echo json_encode($data);
         }
        public function insertFormation() {
            $dbconn =  $this->connect();
