@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
 //________________VAR MAP _________________________________________________________________________________
 // Variable de la map
 var map = L.map('map', 
@@ -18,6 +18,39 @@ map.setMaxBounds([
 ]); 
 
 
+
+
+// Liste déroulante ville
+
+var $listederou = $('#listeville');
+
+$listederou.append('<option value="">Selectionnez ...</option>');
+$.ajax(
+{
+        url: './inc/fonction.php?action=deroullistville',
+        data: 'villes', 
+        success: function(json) {
+            json = JSON.parse(json);
+            $.each(json, function(index, ville)
+            {
+                var action = "<option value='"+ville.cpdeville_id+"'>"+ ville['libelleville'] +" ("+ ville['cp_id'] +") </option>";
+                $('#listeville').append(action);
+
+            });
+            console.log(json);
+
+    }
+
+});
+
+// à la sélection de la localité un dans la liste
+$listederou.on('change', function() {
+    var val = $(this).val(); // on récupère la valeur de la localité un
+    $('#cpdeville').val(val); 
+    
+});
+
+
 var marker = L.marker([0, 0]).addTo(map); // Ajout d'un marker
 
 map.on('click', function(e) 
@@ -33,8 +66,7 @@ map.on('click', function(e)
     document.getElementById('nomorganisme').value = '';
     document.getElementById('adresse1').value = '';
     document.getElementById('adresse2').value = '';
-    document.getElementById('ville').value = '';
-    document.getElementById('cp').value = '';
+    document.getElementById('cpdeville').value = '';
     document.getElementById('emailorganisme').value = '';
     document.getElementById('numerotel').value = '';
     
@@ -52,11 +84,15 @@ map.on('click', function(e)
         var nom = document.getElementById('nomorganisme').value;
         var adresse1 = document.getElementById('adresse1').value;
         var adresse2 = document.getElementById('adresse2').value;
-        var ville = document.getElementById('ville').value;
-        var cp = document.getElementById('cp').value;
+        var intituleadresse = document.getElementById('intituleadresse').value;
         
         var email = document.getElementById('emailorganisme').value;
         var numtel = document.getElementById('numerotel').value;
+        
+        var cpdeville = document.getElementById('cpdeville').value;
+        
+        
+        
         $.post('./addorg.php',
         {
             plat: latInput,
@@ -64,10 +100,10 @@ map.on('click', function(e)
             pnom: nom,
             paddr1: adresse1,
             paddr2: adresse2,
-            pville: ville,
-            pcp : cp,
+            pcpdeville: cpdeville,
             pemail : email,
-            pnumtel : numtel
+            pnumtel : numtel,
+            pintitule : intituleadresse
 
         },
         function(data) // Insertion ok
@@ -77,16 +113,18 @@ map.on('click', function(e)
                 document.getElementById('nomorganisme').value = '';
                 document.getElementById('adresse1').value = '';
                 document.getElementById('adresse2').value = '';
-                document.getElementById('ville').value = '';
-                document.getElementById('cp').value = '';
+                document.getElementById('cpdeville').value = '';
                 document.getElementById('status').innerHTML = 'Organisme enregistré avec succés! (Approbation demandé)';
                 document.getElementById('emailorganisme').value = '';
                 document.getElementById('numerotel').value = '';
+                document.getElementById('intituleadresse').value = '';
    
          
         }
         );
     }
+
+});
 
 });
 

@@ -23,6 +23,7 @@
         <div class="gestion">
             <div class="box">
                 <div class="inputDiv">
+                    <input type="hidden" value="0" name="cpdeville" id="cpdeville">
                     <b><center>Ajouté un organisme</b> </center><br><br>
                     <b>Lat</b>: <br>
                     <input type="text" id="latInput"> <br>
@@ -38,11 +39,11 @@
                     <input type="text" id="adresse1"> <br>
                     <b>Adresse 2</b>: <br>
                     <input type="text" id="adresse2"> <br> 
+                    <b>Intitulé de l'adresse</b>: <br>
+                    <input type="text" id="intituleadresse"> <br> 
                     <b>Ville</b>: <br>
-                    <input type="text" id="ville"> <br> 
-                    <b>Code postal</b>: <br>
-                    <input type="text" id="cp"> <br> 
-                    
+                    <select class="select-orga" name="listeville" id="listeville"></select> <br> 
+
                     
                     
                     

@@ -106,7 +106,7 @@ $(document).ready(function()
                                 tr = $('<tr/>');
                                 tr.append("<td>" + organisme.organisme_id + "</td>");
                                 tr.append("<td>" + organisme.libelle_o + "</td>");
-                                tr.append("<td>" + organisme.libelleville + " (" + organisme.libellecp + ")</td>");
+                                tr.append("<td>" + organisme.libelleville + " (" + organisme.cp_id + ")</td>");
 
                                 var action = "<td><div class='btn-group' data-toggle='buttons'>";
                                 action += "<a target='_blank' class='bouttonform button2 edit_data' id='"+organisme.organisme_id+"'>Modifié</a>";

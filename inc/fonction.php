@@ -44,6 +44,9 @@ switch($action) {
     case 'deroullisttype':
 	$dbconn->getDeroulListType();
         break;
+     case 'deroullistville':
+	$dbconn->getDeroulListVille();
+        break;
     case 'recherche':
         $search = isset($params['q']) && $params['q'] !='' ? $params['q'] : 0;
 	$dbconn->getSearchResult($search);
@@ -58,10 +61,10 @@ class ConnectToDb {
         protected $listOrganisme = array();
         public function connect()
 	{
-		$host = "localhost";
-		$username = "postgres";
-		$mdp = "root";
-                $db = "Stage";
+		$host = "172.19.40.43";
+		$username = "fabrice";
+		$mdp = "fabrice";
+                $db = "THOMAS";
                 $port = "5432";
                 try{
                     $dbconn = pg_connect("host=$host dbname=$db user=$username
@@ -73,78 +76,20 @@ class ConnectToDb {
 		return $dbconn;
 	}
         
-	public function addOrganismes($lat, $lng, $name, $adr1, $adr2, $ville, $cp, $telephone, $email)
+	public function addOrganismes($lat, $lng, $name, $adr1, $adr2, $cpdeville , $telephone, $email , $intituleadresse)
 	{
             // ORGANISME
             $dbconn =  $this->connect();
-            $queryoranisme = "INSERT INTO organisme (libelle_o) VALUES ('$name');";
-            $resulto = pg_query($dbconn, $queryoranisme);
-            if  (!$resulto) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resulto\" );</script>";
+            $query = 'INSERT INTO temp_organismes (name,lat,lng,rue1,rue2,cpdeville,email,telephone,intituleadresse) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)';
+            
+            $tempinsert = pg_prepare($dbconn, "temp_orga",$query);  
+            $tempinsert = pg_execute($dbconn, "temp_orga", array($name,$lat,$lng,$adr1,$adr2,$cpdeville,$email,$telephone,$intituleadresse)) or die("Impossible d'inserer la formation temporaire (en attente de vérification/confirmation)");
+            
+            //echo $lat.$lng.$name.$adr1.$adr2.$cpdeville.$telephone.$email.$intituleadresse;
+            
+            if  (!$tempinsert) {
+                 echo "<script>console.debug( \"PHP DEBUG: $tempinsert\" );</script>";
             }
-            
-            $taboid = pg_fetch_array(pg_query("SELECT currval('organisme_organisme_id_seq') as taboidr"));
-            $id_orgar = $taboid["taboidr"];
-            
-            
-            // Telephone
-            
-            $querytelephone = "INSERT INTO telephone (telephone,organisme_id) VALUES ('$telephone','$id_orgar');";
-            $resulttel = pg_query($dbconn, $querytelephone);
-            if  (!$resulttel) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resulttel\" );</script>";
-            }
-            
-            // Email
-            
-            $queryemail = "INSERT INTO mail (mail,organisme_id) VALUES ('$email','$id_orgar');";
-            $resultemail = pg_query($dbconn, $queryemail);
-            if  (!$resultemail) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resultemail\" );</script>";
-            }
-            
-            
-            // ADDRESSE
-            $queryadresse = "INSERT INTO adresse (rue1,rue2,lat,lng,organisme_id) VALUES ('$adr1','$adr2','$lat','$lng','$id_orgar');";
-            $resulta = pg_query($dbconn, $queryadresse);
-            if  (!$resulta) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resulta\" );</script>";
-            }
-            
-            
-            $tabaid = pg_fetch_array(pg_query("SELECT currval('adresse_adresse_id_seq') as tabaidr"));
-            $id_addr = $tabaid["tabaidr"];
-            
-            // VILLE 
-            
-            $querryville = "INSERT INTO ville (libelleville,adresse_id) VALUES ('$ville','$id_addr');";
-            $resultv = pg_query($dbconn, $querryville);
-            if  (!$resultv) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resultv\" );</script>";
-            }
-            
-            $tabvid = pg_fetch_array(pg_query("SELECT currval('ville_ville_id_seq') as tabvidr"));
-            $id_ville = $tabvid["tabvidr"];
-            
-            
-            // CP
-            $querrycp = "INSERT INTO codepostal (libellecp) VALUES ('$cp');";
-            $resultcp = pg_query($dbconn, $querrycp);
-            if  (!$resultcp) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resultcp\" );</script>";
-            }
-            
-            $tabcpid = pg_fetch_array(pg_query("SELECT currval('codepostal_cp_id_seq') as tabcpidr"));
-            $id_cp = $tabcpid["tabcpidr"];
-            
-            //CP DE VILLE
-            
-            $querrycpdeville = "INSERT INTO cpdeville (ville_id,cp_id) VALUES ('$id_ville','$id_cp');";
-            $resultcpdeville = pg_query($dbconn, $querrycpdeville);
-            if  (!$resultcpdeville) {
-                 echo "<script>console.debug( \"PHP DEBUG: $resultcpdeville\" );</script>";
-            }
-      
             
             
             pg_close($dbconn);
@@ -165,7 +110,7 @@ class ConnectToDb {
         public function getOrganisme() {
             
                 $dbconn =  $this->connect();
-		$sql = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp FROM organisme o LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
+		$sql = 'SELECT * FROM public."FgetOrganisme"';
 		$queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des organismes");
                 
 		$listOrganisme = pg_fetch_all($queryRecords);
@@ -391,6 +336,19 @@ class ConnectToDb {
                 
                 
                 $queryRecords = pg_query($dbconn, $queryoranisme) or die("error to fetch employees data");
+                $data = pg_fetch_all($queryRecords);
+                echo json_encode($data);
+
+            }
+        }
+        public function getDeroulListVille(){          
+            if(isset($_GET['villes'])) {   // requête qui récupère les localités un
+               
+                $dbconn =  $this->connect();
+                $queryoranisme = "SELECT c.cpdeville_id , c.cp_id , v.libelleville FROM cpdeville c LEFT JOIN ville v ON v.ville_id = c.ville_id ORDER BY v.libelleville ASC";
+                
+                
+                $queryRecords = pg_query($dbconn, $queryoranisme) or die("Impossible d'avoir la liste des villes");
                 $data = pg_fetch_all($queryRecords);
                 echo json_encode($data);
 

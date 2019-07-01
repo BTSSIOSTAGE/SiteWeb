@@ -9,12 +9,15 @@ $lng = strip_tags($_POST['plng']);
 $name = strip_tags($_POST['pnom']);
 $adr1 = strip_tags($_POST['paddr1']);
 $adr2 = strip_tags($_POST['paddr2']);
-$ville = strip_tags($_POST['pville']);
-$cp = strip_tags($_POST['pcp']);
+$cpdeville = strip_tags($_POST['pcpdeville']);
 $telephone = strip_tags($_POST['pnumtel']);
 $email = strip_tags($_POST['pemail']);
+$intituleadresse = strip_tags($_POST['pintitule']);
 
-$dbconn->addOrganismes($lat, $lng, $name, $adr1, $adr2, $ville, $cp, $telephone, $email);
+
+
+
+$dbconn->addOrganismes($lat, $lng, $name, $adr1, $adr2, $cpdeville , $telephone, $email , $intituleadresse);
 
 
 
