@@ -114,7 +114,7 @@ map.on('click', function(e)
                 document.getElementById('adresse1').value = '';
                 document.getElementById('adresse2').value = '';
                 document.getElementById('cpdeville').value = '';
-                document.getElementById('status').innerHTML = 'Organisme enregistré avec succés! (Approbation demandé)';
+                document.getElementById('status').innerHTML = 'Organisme enregistré avec succés ! (Approbation demandé)';
                 document.getElementById('emailorganisme').value = '';
                 document.getElementById('numerotel').value = '';
                 document.getElementById('intituleadresse').value = '';

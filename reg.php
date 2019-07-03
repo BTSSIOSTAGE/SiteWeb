@@ -54,7 +54,7 @@
                                                                             
                             $sql = "INSERT INTO compte (email, mdp,  nom) VALUES ('$login_app', '$hashedmdp', '$nom_app')";
                             $queryRecords = pg_query($conn, $sql) or die("Création compte : Impossible (erreur requete)");
-                            $reg_msg = 'Votre compte à bien était crée , vous pouvez dés à présent vous connecté !';
+                            $reg_msg = "Votre compte à bien était crée ( En attente d'activation ! )";
 			}
                     }catch (Exception $e) {
                         echo 'Exception reçue : ', $e->getMessage(), "\n";

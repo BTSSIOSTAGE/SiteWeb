@@ -24,6 +24,9 @@ switch($action) {
     case 'flist':
         $dbconn->get_formations();
         break;
+     case 'clist':
+        $dbconn->get_comptelist();
+        break;
     case 'add':
         $dbconn->insertFormation();
         break;
@@ -31,12 +34,23 @@ switch($action) {
  	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
 	$dbconn->getFormation($id);
         break;
+    case 'get_compte':
+ 	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
+	$dbconn->getcompte($id);
+        break;
     case 'fdelete':
  	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
 	$dbconn->deleteFormation($id);
         break;
+    case 'cdelete':
+ 	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
+	$dbconn->deleteCompte($id);
+        break;
     case 'fedit':
 	$dbconn->updateFormation();
+        break;
+    case 'cedit':
+	$dbconn->updateCompte();
         break;
     case 'deroullist':
 	$dbconn->getDeroulList();
@@ -107,6 +121,13 @@ class ConnectToDb {
             $data = pg_fetch_all($queryRecords);
             echo json_encode($data);
           }
+         public function get_comptelist() {
+            $dbconn =  $this->connect();
+            $sql = "SELECT compte_id , email , nom , activate_status , droittype FROM compte";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des formations");
+            $data = pg_fetch_all($queryRecords);
+            echo json_encode($data);
+          }
         public function getOrganisme() {
             
                 $dbconn =  $this->connect();
@@ -130,7 +151,17 @@ class ConnectToDb {
             }
             pg_close($dbconn);
         }
-        
+        public function deleteCompte($id) {
+            $dbconn =  $this->connect();
+            $sql = "Delete FROM compte Where compte_id='$id'";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de supprimé le compte");
+            if($queryRecords) {
+                    echo true;
+            } else {
+                    echo false;
+            }
+            pg_close($dbconn);
+        }
         public function updateFormation() {
             $dbconn =  $this->connect();
 		$data = $resp = array();
@@ -152,6 +183,25 @@ class ConnectToDb {
         echo json_encode($resp);  // send data as json format*/
 		
 	}
+        public function updateCompte() {
+            $dbconn =  $this->connect();
+		$data = $resp = array();
+		$resp['status'] = false;
+                
+		$email = $data['email'] = $_POST["emailcompte"];
+		$nom = $data['nom'] = $_POST["nom"];
+		$capacite = $data['capacite'] = $_POST["capacite"];
+                $niv_requis = $data['niv_requis'] = $_POST["niv_requis"];
+                
+		$compte_id = $data['compte_id'] = $_POST["compte_id"];
+		
+                $sql = "UPDATE compte SET email = '$email', nom = '$nom' , activate_status = '$capacite' , droittype ='$niv_requis' WHERE compte_id = '$compte_id'";
+		pg_query($dbconn, $sql) or die("Impossible de mettre à jour la formation");
+        $resp['status'] = true;
+        $resp['Record'] = $data;
+        echo json_encode($resp);  // send data as json format*/
+		
+	}
         public function getFormation($id) {
             $dbconn =  $this->connect();
             $sql = "SELECT f.formation_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id FROM formation_organisme f WHERE f.formation_id = $1";
@@ -160,6 +210,16 @@ class ConnectToDb {
             $data = pg_fetch_object($result);
             echo json_encode($data);
         }
+        public function getcompte($id) {
+            $dbconn =  $this->connect();
+            $sql = "SELECT compte_id , email , nom , activate_status , droittype FROM compte WHERE compte_id = $1";
+            $result = pg_prepare($dbconn, "get_compte",$sql);  
+            $result = pg_execute($dbconn, "get_compte", array($id)) or die("Impossible d'avoir les informations du compte");
+            $data = pg_fetch_object($result);
+            echo json_encode($data);
+        }
+        
+        
        public function insertFormation() {
            $dbconn =  $this->connect();
               $data = $resp = array();
@@ -190,38 +250,22 @@ class ConnectToDb {
             // Sup tout les emails liés
             $deleteemail = "DELETE FROM mail WHERE organisme_id = '$id'";
             pg_query($dbconn, $deleteemail) or die('Impossible effacé email '); 
-            // Sup tout les tel liés
-            $deletetel = "DELETE FROM telephone WHERE organisme_id = '$id'";
-            pg_query($dbconn, $deletetel) or die('Impossible effacé tel ');   
+            
             // Recup donnée des id à sup
-            $selectid = "SELECT o.organisme_id, adr.adresse_id,v.ville_id, cp.cp_id FROM organisme o LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id WHERE o.organisme_id = '$id'";
+            $selectid = "SELECT o.organisme_id, adr.adresse_id FROM organisme o LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id WHERE o.organisme_id = '$id'";
             $queryRecords = pg_query($dbconn, $selectid) or die('query error');          
             $donneeid = array();
             while ($row = pg_fetch_row($queryRecords)) {
-                $donneeid["organisme_id"] = $row[0];
                 $donneeid["adresse_id"] = $row[1];
-                $donneeid["ville_id"] = $row[2];
-                $donneeid["cp_id"] = $row[3];
             }
-            echo $donneeid["ville_id"];
-            // Sup cpde ville
-            $villeid = $donneeid["ville_id"];
-            $deletecpdeville = "DELETE FROM cpdeville WHERE ville_id = '$villeid'";
-            pg_query($dbconn, $deletecpdeville) or die('Impossible effacé cpdeville ');
-            
-            // Sup cp
-            $cpid = $donneeid["cp_id"];
-            $deletecp= "DELETE FROM codepostal WHERE cp_id = '$cpid'";
-            pg_query($dbconn, $deletecp) or die('Impossible effacé cp '); 
-            
-             // Sup ville
-            $deleteville= "DELETE FROM ville WHERE ville_id = '$villeid'";
-            pg_query($dbconn, $deleteville) or die('Impossible effacé ville '); 
             
              // Sup adresse
             $adresse_id = $donneeid["adresse_id"];
             $deleteadresse= "DELETE FROM adresse WHERE adresse_id = '$adresse_id'";
             pg_query($dbconn, $deleteadresse) or die('Impossible effacé adresse '); 
+            
+            $deletetel = "DELETE FROM adresse_telephone WHERE adresse_id = '$adresse_id'";
+            pg_query($dbconn, $deletetel) or die('Impossible effacé tel ');  
             
             // Sup Orga
             
