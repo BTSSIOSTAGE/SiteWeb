@@ -26,8 +26,8 @@
            if($_SESSION["droittype"] == 3){
                echo '<li style="float:right"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Admisnistration</a><ul>
                             <li><a href="./acompte.php">Comptes</a></li>
-                            <li><a href="./gorganisme.php">Organismes</a></li>
-                            <li><a href="./gorganisme.php">Formations</a></li>
+                            <li><a href="./aorganismes.php">Organismes</a></li>
+                            <li><a href="./aformations.php">Formations</a></li>
                          </ul></li>';
            }
 					

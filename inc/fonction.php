@@ -24,7 +24,13 @@ switch($action) {
     case 'flist':
         $dbconn->get_formations();
         break;
-     case 'clist':
+    case 'flisttemp':
+        $dbconn->get_formationstemp();
+        break;
+    case 'olisttemp':
+        $dbconn->get_organismetemp();
+        break;
+    case 'clist':
         $dbconn->get_comptelist();
         break;
     case 'add':
@@ -41,6 +47,22 @@ switch($action) {
     case 'fdelete':
  	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
 	$dbconn->deleteFormation($id);
+        break;
+    case 'fdeletetemp':
+ 	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
+	$dbconn->deleteFormationTemp($id);
+        break;
+    case 'odeletetemp':
+ 	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
+	$dbconn->deleteOrganismeTemp($id);
+        break;
+    case 'oktemp':
+ 	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
+	$dbconn->OkFormationTemp($id);
+        break;
+    case 'oktempo':
+ 	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
+	$dbconn->OkOrganismeTemp($id);
         break;
     case 'cdelete':
  	$id = isset($params['id']) && $params['id'] !='' ? $params['id'] : 0;
@@ -120,7 +142,21 @@ class ConnectToDb {
             $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des formations");
             $data = pg_fetch_all($queryRecords);
             echo json_encode($data);
-          }
+        }
+        public function get_formationstemp() {
+            $dbconn =  $this->connect();
+            $sql = "SELECT f.temp_id , f.libelle_f , f.type , f.capacite , f.niv_requis , f.modalite_spe_recrutement , f.organisme_id , o.libelle_o , libelleville , cp_id FROM temp_formations f LEFT JOIN organisme o ON o.organisme_id = f.organisme_id LEFT JOIN adresse a ON a.organisme_id = o.organisme_id LEFT JOIN cpdeville cp ON cp.cpdeville_id = a.cpdeville LEFT JOIN ville v ON v.ville_id = cp.ville_id";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des formations temporaires");
+            $data = pg_fetch_all($queryRecords);
+            echo json_encode($data);
+        }
+        public function get_organismetemp() {
+            $dbconn =  $this->connect();
+            $sql = "SELECT temp_id , name , rue1 , rue2 , libelleville , cp_id , email , telephone , intituleadresse FROM temp_organismes f LEFT JOIN cpdeville cp ON cp.cpdeville_id = f.cpdeville LEFT JOIN ville v ON v.ville_id = cp.ville_id";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossible d'avoir la liste des formations temporaires");
+            $data = pg_fetch_all($queryRecords);
+            echo json_encode($data);
+        }
          public function get_comptelist() {
             $dbconn =  $this->connect();
             $sql = "SELECT compte_id , email , nom , activate_status , droittype FROM compte";
@@ -144,6 +180,50 @@ class ConnectToDb {
             $dbconn =  $this->connect();
             $sql = "Delete FROM formation_organisme Where formation_id='$id'";
             $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de supprimé la formation");
+            if($queryRecords) {
+                    echo true;
+            } else {
+                    echo false;
+            }
+            pg_close($dbconn);
+        }
+        public function deleteFormationTemp($id) {
+            $dbconn =  $this->connect();
+            $sql = "Delete FROM temp_formations Where temp_id='$id'";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de supprimé la formation temporaire");
+            if($queryRecords) {
+                    echo true;
+            } else {
+                    echo false;
+            }
+            pg_close($dbconn);
+        }
+        public function deleteOrganismeTemp($id) {
+            $dbconn =  $this->connect();
+            $sql = "Delete FROM temp_organismes Where temp_id='$id'";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de supprimé l'organisme temporaire");
+            if($queryRecords) {
+                    echo true;
+            } else {
+                    echo false;
+            }
+            pg_close($dbconn);
+        }
+        public function OkFormationTemp($id) {
+            $dbconn =  $this->connect();
+            $sql = "UPDATE temp_formations SET temp_id='$id' WHERE temp_id='$id'";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de confirmer la formation temporaire");
+            if($queryRecords) {
+                    echo true;
+            } else {
+                    echo false;
+            }
+            pg_close($dbconn);
+        }
+        public function OkOrganismeTemp($id) {
+            $dbconn =  $this->connect();
+            $sql = "UPDATE temp_organismes SET temp_id='$id' WHERE temp_id='$id'";
+            $queryRecords = pg_query($dbconn, $sql) or die("Impossibles de confirmer l'organisation temporaire");
             if($queryRecords) {
                     echo true;
             } else {
@@ -233,7 +313,7 @@ class ConnectToDb {
               $data['modalite_spe_recrutement'] = filter_input(INPUT_POST, 'modalite_spe_recrutement');
               $data['organisme_id'] = filter_input(INPUT_POST, 'organisme_id');
 
-              pg_insert($dbconn, 'formation_organisme' , $data) or die("Impossible d'inserer une nouvelle formation");
+              pg_insert($dbconn, 'temp_formations' , $data) or die("Impossible d'inserer une nouvelle formation");
 
 
               $resp['status'] = true;
@@ -345,7 +425,7 @@ class ConnectToDb {
         public function getFormationsList()
 	{
             $dbconn =  $this->connect();
-            $query = "SELECT o.organisme_id, o.libelle_o, v.libelleville, cp.libellecp , adr.rue1 , adr.rue2 , adr.lat , adr.lng, fo.libelle_f , fo.capacite, fo.niv_requis,fo.type,fo.modalite_spe_recrutement FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN ville v ON adr.adresse_id = v.adresse_id LEFT JOIN cpdeville cpdv ON v.ville_id = cpdv.ville_id LEFT JOIN codepostal cp ON cpdv.cp_id = cp.cp_id";
+            $query = "SELECT o.organisme_id, o.libelle_o, adr.rue1 , adr.rue2 , adr.lat , adr.lng, fo.libelle_f , fo.capacite, fo.niv_requis,fo.type,fo.modalite_spe_recrutement , cp.cp_id , v.libelleville FROM formation_organisme fo RIGHT JOIN organisme o ON o.organisme_id = fo.organisme_id LEFT JOIN adresse adr ON o.organisme_id = adr.organisme_id LEFT JOIN cpdeville cp ON cp.cpdeville_id = adr.cpdeville LEFT JOIN ville v ON v.ville_id = cp.ville_id";
 
             $result = pg_query($dbconn, $query) or die("Impossible d'avoir la liste des formations");
 
@@ -355,17 +435,26 @@ class ConnectToDb {
 
             while ($row = pg_fetch_row($result)) {
                 $city["libelle_o"] = $row[1];
-                $city["libelleville"] = $row[2];
-                $city["libellecp"] = $row[3];
-                $city["rue1"] = $row[4];
-                $city["rue2"] = $row[5];    
-                $city["lat"] = $row[6];
-                $city["lng"] = $row[7];
-                $city["libelle_f"] = $row[8];
-                $city["capacite"] = $row[9];
-                $city["niv_requis"] = $row[10];
-                $city["type"] = $row[11];
-                $city["modalite_spe_recrutement"] = $row[12];
+                $city["rue1"] = $row[2];
+                $city["rue2"] = $row[3];
+                $city["lat"] = $row[4];
+                $city["lng"] = $row[5];
+                $city["libelle_f"] = $row[6];
+                $city["capacite"] = $row[7];
+                $city["niv_requis"] = $row[8];
+                $city["type"] = $row[9];
+                $city["modalite_spe_recrutement"] = $row[10];
+                $city["libellecp"] = $row[11];               
+                $city["libelleville"] = $row[12];
+                
+                
+                    
+
+                
+                
+                
+                
+                
                 array_push($citiesArray, $city);
             }
             pg_close($dbconn);
